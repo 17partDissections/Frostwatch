@@ -8,8 +8,9 @@ namespace Q17pD.Frostwatch.Player
     {
         [HideInInspector] public CinemachineBrain Brain;
         public List<CinemachineVirtualCamera> Cameras;
-        [HideInInspector]public int CurrentCameraIndex;
+        [HideInInspector] public int CurrentCameraIndex;
+        [HideInInspector] public PlayerItemHandler PlayerItemHandler;
         
-        private void Start() { Brain = GetComponentInChildren<CinemachineBrain>(); }
+        private void Start() { Brain = GetComponentInChildren<CinemachineBrain>(); PlayerItemHandler = GetComponent<PlayerItemHandler>(); }
     }
 }

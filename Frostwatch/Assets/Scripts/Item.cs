@@ -7,13 +7,12 @@ namespace Q17pD.Frostwatch
 {
     public class Item : MonoBehaviour
     {
-        [SerializeField] private int _itemIndex;
-        [SerializeField] private string _itemName;
-        [SerializeField] private string _itemDescription;
-        [SerializeField] private bool _collectable;
+        [SerializeField] private int _index;
+        [SerializeField] private string _localeKey;
+        [SerializeField] private bool _isCollectable;
         [Range(0, 5)][SerializeField] private int _amount = 1;
         [SerializeField] private Transform  _moveFinalTransform;
-        [SerializeField] private AudioClip _itemEnterSound, _itemPickUpSound, _itemDropSound;
+        [SerializeField] private AudioClip _enterSound, _pickUpSound, _dropSound;
         private Outline _outline;
         private Vector3 _originalPos;
         private Player.Player _player;
@@ -23,7 +22,7 @@ namespace Q17pD.Frostwatch
         {
             _outline = GetComponent<Outline>();
             _outline.enabled = false;
-            if(_collectable) 
+            if(_isCollectable) 
             {
                 _originalPos = transform.position;
                 _player = player;
@@ -34,20 +33,22 @@ namespace Q17pD.Frostwatch
         private void OnMouseEnter()
         {
             _outline.enabled = true;
-            _audioHandler.PlaySFX(_itemEnterSound, 0);
-            if(_collectable) transform.DOMove(_moveFinalTransform.position, 0.1f);
+            _audioHandler.PlaySFX(_enterSound, 0);
+            if(_isCollectable) transform.DOMove(_moveFinalTransform.position, 0.1f);
         }
         private void OnMouseExit()
         {
             _outline.enabled = false;
-            if(_collectable) transform.DOMove(_originalPos, 0.1f);
+            if(_isCollectable) transform.DOMove(_originalPos, 0.1f);
         }
         private void OnMouseDown()
         {
-            if(_collectable)
+            if(_isCollectable && !_player.PlayerItemHandler.IsPlayerHoldingItem())
             {
-                _audioHandler.PlaySFX(_itemPickUpSound, 0);
+                _audioHandler.PlaySFX(_pickUpSound, 0);
+                _player.PlayerItemHandler.AddItem(_index);
             }
+
         }
     }
 }
