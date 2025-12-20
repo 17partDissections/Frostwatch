@@ -1,0 +1,4 @@
+"Extenject Dependency Injection" - Mathijs Bakker
+"DOTween (HOTween v2)" - Demigiant
+"Auto Letterbox" - Robinhood76
+
