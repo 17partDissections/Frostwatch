@@ -8,7 +8,8 @@ namespace Q17pD.Frostwatch
         [SerializeField] private string _itemName;
         private Outline _outline;
         [SerializeField] private int _itemIndex;
-        [Range(1, 5)][SerializeField] private int _amount;
+        [Range(0, 5)][SerializeField] private int _amount = 1;
+         [SerializeField] private bool _collectable;
         private void Start() 
         {
             _outline = GetComponent<Outline>();
