@@ -1,0 +1,27 @@
+//BasicAnswers
+Yes=Yes
+No=No
+//Menu
+CampaignButton=Play Campaign
+EndlessModeButton=Play Endless Mode
+OptionsButton=Options
+CreditsButton=Credits
+QuitButton=Quit
+ApplyButton=Apply
+BackButton=Back
+Music=Music
+SFX=SFX
+//CollectableItems
+WalkieTalkieName=Walkie-Talkie
+WalkieTalkieDescription=Walkie-Talkie
+MosinRifleName=Mosin Rifle
+MosinRifleDescription=Mosin Rifle
+//UncollectableItems
+RadioName=Radio
+RadioDescription=Radio
+//In-Game Actions
+Drop=Drop
+DropFire=Drop into fire
+Shoot=Shoot
+//Voicelines
+//Disclaimers

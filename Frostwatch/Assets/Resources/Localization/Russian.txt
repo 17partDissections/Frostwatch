@@ -1,0 +1,27 @@
+//BasicAnswers
+Yes=Да
+No=Нет
+//Menu
+CampaignButton=Кампания
+EndlessModeButton=Бесконечный режим
+OptionsButton=Настройки
+CreditsButton=Титры
+QuitButton=Выход
+ApplyButton=Применить
+BackButton=Назад
+Music=Музыка
+SFX=SFX
+//CollectableItems
+WalkieTalkieName=Рация
+WalkieTalkieDescription=Рация
+MosinRifleName=Винтовка Мосина
+MosinRifleDescription=Винтовка Мосина
+//UncollectableItems
+RadioName=Радио
+RadioDescription=Радио
+//In-Game Actions
+Drop=Выбросить
+DropFire=Выбросить в костер
+Shoot=Выстрелить
+//Voicelines
+//Disclaimers
