@@ -6,14 +6,32 @@ namespace MBW.WaST
 {
     public class LocalizationManager : MonoBehaviour
     {
-        private List<SystemLanguage> _languages = new List<SystemLanguage> { SystemLanguage.English, SystemLanguage.Russian, SystemLanguage.French, SystemLanguage.German, SystemLanguage.Unknown };
-        private int _languageIndex;
+        private List<SystemLanguage> _languages = new List<SystemLanguage> { SystemLanguage.English, SystemLanguage.Russian };
+        private int _languageIndex = 0;
+        private int _lastLanguageIndex = -1;
 
-        public void ChangeIndex(int newIndex) { _languageIndex = newIndex; }
-        public void ChangeLanguage()
+        public void ChangeIndex(int newIndex)
         {
-            Localize.SetCurrentLanguage(_languages[_languageIndex]);
-            //LocalizeImage.SetCurrentLanguage(_languages[_languageIndex]);
+            if (_lastLanguageIndex == -1)
+                _lastLanguageIndex = PlayerPrefs.GetInt("LangIndex", 0);
+            _languageIndex = newIndex;
+            ChangeLanguage();
+        }
+        public void ChangeLanguage() { Localize.SetCurrentLanguage(_languages[_languageIndex]); }
+        public void CompletelyChangeLanguage()
+        {
+            PlayerPrefs.SetInt("LangIndex", _languageIndex);
+            _lastLanguageIndex = -1;
+            ChangeLanguage();
+        }
+        public void Revert()
+        {
+            if (_lastLanguageIndex != -1)
+            {
+                _languageIndex = _lastLanguageIndex;
+                _lastLanguageIndex = -1;
+            }
+            ChangeLanguage();
         }
     }
 }
