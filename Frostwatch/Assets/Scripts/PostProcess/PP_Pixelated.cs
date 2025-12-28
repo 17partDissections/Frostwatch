@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TOZ;
 
 namespace TOZ.ImageFX {
 
@@ -14,6 +10,8 @@ namespace TOZ.ImageFX {
 
 		//Mono Methods
 		void Awake() {
+			if(PlayerPrefs.GetInt("PixelationValue") == 0)
+				this.enabled = false;
 			this.shd = Shader.Find("Hidden/TOZ/ImageFX/Pixelated");
 		}
 
