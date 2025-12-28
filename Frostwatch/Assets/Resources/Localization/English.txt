@@ -1,6 +1,8 @@
 //BasicAnswers
 Yes=Yes
 No=No
+Enabled=Enabled
+Disabled=Disabled
 //Menu
 CampaignButton=Play Campaign
 EndlessModeButton=Play Endless Mode
@@ -9,6 +11,9 @@ CreditsButton=Credits
 QuitButton=Quit
 ApplyButton=Apply
 BackButton=Back
+SoundButton=Sound
+VideoButton=Video
+LanguageButton=Language
 Music=Music
 SFX=SFX
 //CollectableItems

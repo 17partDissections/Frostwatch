@@ -1,6 +1,8 @@
 //BasicAnswers
 Yes=Да
 No=Нет
+Enabled=Включено
+Disabled=Отключено
 //Menu
 CampaignButton=Кампания
 EndlessModeButton=Бесконечный режим
@@ -9,8 +11,14 @@ CreditsButton=Титры
 QuitButton=Выход
 ApplyButton=Применить
 BackButton=Назад
+SoundButton=Звук
+VideoButton=Видео
+LanguageButton=Язык
 Music=Музыка
 SFX=SFX
+Subtitles=Subtitles
+Pixelation=Pixelation
+ForcedCameraRatio=Forced 5:4 camera ratio
 //CollectableItems
 WalkieTalkieName=Рация
 WalkieTalkieDescription=Рация
