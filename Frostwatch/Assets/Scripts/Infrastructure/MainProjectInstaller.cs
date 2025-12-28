@@ -1,8 +1,11 @@
 using Zenject;
 
-public class MainProjectInstaller : MonoInstaller
+namespace Q17pD.Frostwatch.Infrastructure
 {
-public override void InstallBindings()
+    public class MainProjectInstaller : MonoInstaller
     {
+        public override void InstallBindings()
+        {
+        }
     }
 }
