@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using Zenject;
 
 namespace Q17pD.Frostwatch.Player
 {
@@ -11,6 +12,6 @@ namespace Q17pD.Frostwatch.Player
         [HideInInspector] public int CurrentCameraIndex;
         [HideInInspector] public PlayerItemHandler PlayerItemHandler;
         
-        private void Start() { Brain = GetComponentInChildren<CinemachineBrain>(); PlayerItemHandler = GetComponent<PlayerItemHandler>(); }
+        [Inject] private void Construct() { Brain = GetComponentInChildren<CinemachineBrain>(); PlayerItemHandler = GetComponent<PlayerItemHandler>(); }
     }
 }
