@@ -25,6 +25,7 @@ namespace DFTGames.Localization
         public override void UpdateLocale()
         {
             if (!text) return; // catching race condition
+            if(text.text != string.Empty) { text.text = string.Empty; }
             if (!System.String.IsNullOrEmpty(localizationKey) && Locale.CurrentLanguageStrings.ContainsKey(localizationKey))
                 text.SetText(Locale.CurrentLanguageStrings[localizationKey].Replace(@"\n", "" + '\n'));
         }

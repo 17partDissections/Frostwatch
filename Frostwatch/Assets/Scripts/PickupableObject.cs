@@ -40,12 +40,13 @@ namespace Q17pD.Frostwatch
         }
         public override void OnMouseDown()
         {
+            base.OnMouseDown();
             if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
                 _objToMove.transform.DOMove
                 (
-                    new Vector3(_playerIH.transform.position.x, _playerIH.transform.position.y + 2, _playerIH.transform.position.z), 0.25f
+                    _player.PickupableObjectsFinalTransform.position, 0.2f
                 ).OnComplete
                     (
                         () =>
