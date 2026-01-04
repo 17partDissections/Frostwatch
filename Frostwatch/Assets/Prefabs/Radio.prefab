@@ -170,5 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 7719922386385888915}
+  _localeNameKey: RadioName
+  _localeDescriptionKey: RadioDescription
   _enterSound: {fileID: 8300000, guid: 37a6ea7aab9903bbaae2cfd7c8f1ffa6, type: 3}
   _downSound: {fileID: 0}

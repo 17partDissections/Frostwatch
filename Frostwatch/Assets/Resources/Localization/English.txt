@@ -14,17 +14,19 @@ BackButton=Back
 SoundButton=Sound
 VideoButton=Video
 LanguageButton=Language
-Music=Music
 SFX=SFX
-//CollectableItems
-WalkieTalkieName=Walkie-Talkie
-WalkieTalkieDescription=Walkie-Talkie
-MosinRifleName=Mosin Rifle
-MosinRifleDescription=Mosin Rifle
-//UncollectableItems
+Music=Music
+//EventInteractiveObjects
 RadioName=Radio
-RadioDescription=Radio
-//In-Game Actions
+RadioDescription=A loud dust radio. The dial is stuck between frequencies.
+CampfireName=Campfire
+CampfireDescription=Main source of heat for today.
+//PickupableObjects
+WalkieTalkieName=Walkie-Talkie
+WalkieTalkieDescription=A battered, military-issue walkie-talkie. 
+MosinRifleName=Mosin-Nagant M1891/30
+MosinRifleDescription=A reliable veteran of countless battles. It smells of gun oil, powder and history.
+//Actions
 Drop=Drop
 DropFire=Drop into fire
 Shoot=Shoot

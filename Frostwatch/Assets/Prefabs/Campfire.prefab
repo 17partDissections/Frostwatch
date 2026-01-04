@@ -5013,6 +5013,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 332504625592084890}
+  _localeNameKey: CampfireName
+  _localeDescriptionKey: CampfireDescription
   _enterSound: {fileID: 0}
   _downSound: {fileID: 0}
 --- !u!1 &8954777469119703559

@@ -432,6 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 3995939849378123273}
+  _localeNameKey: MosinRifleName
+  _localeDescriptionKey: MosinRifleDescription
   _enterSound: {fileID: 0}
   _index: 1
   _objToMove: {fileID: 7492237149351067053}

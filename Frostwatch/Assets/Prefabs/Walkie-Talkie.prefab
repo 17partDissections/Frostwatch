@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 5251349307447721926}
+  _localeNameKey: WalkieTalkieName
+  _localeDescriptionKey: WalkieTalkieDescription
   _enterSound: {fileID: 8300000, guid: b31aa79123783d7e09b3dfa77a72650b, type: 3}
   _index: 0
   _objToMove: {fileID: 3713518268725579283}

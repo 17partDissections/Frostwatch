@@ -14,20 +14,22 @@ BackButton=Назад
 SoundButton=Звук
 VideoButton=Видео
 LanguageButton=Язык
-Music=Музыка
 SFX=SFX
+Music=Музыка
 Subtitles=Subtitles
 Pixelation=Pixelation
 ForcedCameraRatio=Forced 5:4 camera ratio
-//CollectableItems
-WalkieTalkieName=Рация
-WalkieTalkieDescription=Рация
-MosinRifleName=Винтовка Мосина
-MosinRifleDescription=Винтовка Мосина
-//UncollectableItems
+//EventInteractiveObjects
 RadioName=Радио
-RadioDescription=Радио
-//In-Game Actions
+RadioDescription=Громкое пыльное радио. Переключатель застрял между станциями.
+CampfireName=Костер
+CampfireDescription=Главный источник тепла на сегодня.
+//PickupableObjects
+WalkieTalkieName=Рация
+WalkieTalkieDescription=Потрёпанная рация армейского образца.
+MosinRifleName=Винтовка Мосина обр.1891/30 г.
+MosinRifleDescription=Надёжный ветеран бесчисленных сражений. От неё пахнет оружейным маслом, порохом и историей.
+//Actions
 Drop=Выбросить
 DropFire=Выбросить в костер
 Shoot=Выстрелить
