@@ -44,14 +44,24 @@ namespace DFTGames.Localization
                     {
                         //currentLanguageFileHasBeenFound = true;
                         // We wplit on newlines to retrieve the key pairs
-                        string[] lines = currentLocalizationText.text.Split(new string[] { "\r\n", "\n\r", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+                        string[] lines = currentLocalizationText.text.Split(
+                            new string[] { "\r\n", "\n\r", "\n" },
+                            System.StringSplitOptions.RemoveEmptyEntries
+                        );
+
                         CurrentLanguageStrings.Clear();
+
                         for (int i = 0; i < lines.Length; i++)
                         {
-                            string[] pairs = lines[i].Split(new char[] { '\t', '=' }, 2);
+                            string line = lines[i].Trim();
+                            if (string.IsNullOrEmpty(line) || line.StartsWith("#") || line.StartsWith("//")) continue;
+                            string[] pairs = line.Split(new char[] { '\t', '=' }, 2, System.StringSplitOptions.RemoveEmptyEntries);
                             if (pairs.Length == 2)
                             {
-                                CurrentLanguageStrings.Add(pairs[0].Trim(), pairs[1].Trim());
+                                string key = pairs[0].Trim();
+                                string val = pairs[1].Trim();
+                                key = key.Replace("\t", "");
+                                CurrentLanguageStrings.Add(key, val);
                             }
                         }
                     }

@@ -7,9 +7,10 @@ namespace MBW.WaST
     public class LocalizationManager : MonoBehaviour
     {
         private List<SystemLanguage> _languages = new List<SystemLanguage> { SystemLanguage.English, SystemLanguage.Russian };
-        private int _languageIndex = 0;
+        private int _languageIndex;
         private int _lastLanguageIndex = -1;
 
+        private void Start() { _languageIndex = PlayerPrefs.GetInt("LangIndex", 0); }
         public void ChangeIndex(int newIndex)
         {
             if (_lastLanguageIndex == -1)
