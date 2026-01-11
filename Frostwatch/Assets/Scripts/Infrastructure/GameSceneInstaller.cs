@@ -9,10 +9,19 @@ namespace Q17pD.Frostwatch.Infrastructure
         [SerializeField] private Player.Player _player;
         public override void InstallBindings()
         {
+            BindCursorHandler();
             BindAudioHandler();
             BindPlayer();
         }
 
+        private void BindCursorHandler()
+        {
+            Container
+                .Bind<CursorHandler>()
+                .FromInstance(GetComponent<CursorHandler>())
+                .AsSingle()
+                .NonLazy();
+        }
         private void BindAudioHandler()
         {
             Container

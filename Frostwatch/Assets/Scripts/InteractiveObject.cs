@@ -8,10 +8,16 @@ namespace Q17pD.Frostwatch
         [SerializeField] private Outline _outline;
         [SerializeField] private string _localeNameKey, _localeDescriptionKey;
         [SerializeField] private AudioClip _enterSound;
+        private CursorHandler _cursorHandler;
         protected AudioHandler _audioHandler;
         protected Player.Player _player;
 
-        [Inject] private void Construct(AudioHandler aH, Player.Player player) { _audioHandler = aH; _player = player; }
+        [Inject] private void Construct(CursorHandler cursorHandler, AudioHandler aH, Player.Player player)
+        {
+            _cursorHandler = cursorHandler;
+            _audioHandler = aH;
+            _player = player;
+        }
         protected virtual void Start()
         {
             _outline.OutlineMode = Outline.Mode.OutlineVisible;
@@ -25,6 +31,7 @@ namespace Q17pD.Frostwatch
             {
                 _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);
                 _outline.enabled = true;
+                _cursorHandler.SetCursor("Pointer");
                 _audioHandler.PlaySFX(_enterSound, 0);
             }
         }
@@ -32,7 +39,8 @@ namespace Q17pD.Frostwatch
         {
             _player.PlayerCanvasHandler.ClearInfo();
             _outline.enabled = false;
+            _cursorHandler.SetCursor("Default");
         }
-        public virtual void OnMouseDown() { _player.PlayerCanvasHandler.ClearInfo(); }
+        public virtual void OnMouseDown() { _player.PlayerCanvasHandler.ClearInfo(); _cursorHandler.SetCursor("Default"); }
     }
 }
