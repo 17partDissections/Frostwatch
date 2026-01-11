@@ -23,7 +23,7 @@ namespace Q17pD.Frostwatch
         public override void OnMouseEnter()
         {
             base.OnMouseEnter();
-            if (!_isMoving && !_playerIH.IsPlayerHoldingItem())
+            if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
                 _objToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
@@ -32,7 +32,7 @@ namespace Q17pD.Frostwatch
         public override void OnMouseExit()
         {
             base.OnMouseExit();
-            if (!_isMoving && !_playerIH.IsPlayerHoldingItem())
+            if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
                 _objToMove.transform.DOMove(_originalPos, 0.1f).OnComplete(() => _isMoving = false);

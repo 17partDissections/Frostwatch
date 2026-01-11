@@ -16,8 +16,8 @@ namespace Q17pD.Frostwatch.Player
             _items[_currentItemIndex].SetActive(true);
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
             _items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem);
-            foreach (InventoryAction action in inventoryItem.Actions) { action.Init(this); }
-            _player.PlayerCanvasHandler.SetActions(inventoryItem.Actions);
+            foreach (InventoryAction action in inventoryItem.Actions) { action.Init(_player); }
+            _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
 
         }
         public void DropItem() { _items[_currentItemIndex].SetActive(false); _currentItemIndex = -1; _player.PlayerAnimation.ChangeAnimation(_currentItemIndex); }

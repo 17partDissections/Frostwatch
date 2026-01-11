@@ -19,16 +19,20 @@ namespace Q17pD.Frostwatch
             _outline.OutlineWidth = 5;
             _outline.enabled = false;
         }
-
         public virtual void OnMouseEnter()
         {
-            _outline.enabled = true;
-            _audioHandler.PlaySFX(_enterSound, 0);
-            _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);
+            if (!_player.IsBlending)
+            {
+                _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);
+                _outline.enabled = true;
+                _audioHandler.PlaySFX(_enterSound, 0);
+            }
         }
-
-        public virtual void OnMouseExit() { _outline.enabled = false; _player.PlayerCanvasHandler.ClearInfo(); }
-
+        public virtual void OnMouseExit()
+        {
+            _player.PlayerCanvasHandler.ClearInfo();
+            _outline.enabled = false;
+        }
         public virtual void OnMouseDown() { _player.PlayerCanvasHandler.ClearInfo(); }
     }
 }
