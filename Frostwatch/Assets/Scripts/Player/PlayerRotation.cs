@@ -6,14 +6,13 @@ namespace Q17pD.Frostwatch.Player
 {
     public class PlayerRotation : MonoBehaviour
     {
-        [SerializeField] private float _cooldown = 0.25f;
+        public float Cooldown = 0.25f;
         private Player _player;
-        private bool _isBlending;
         private WaitForSeconds _cooldownWFS;
-        private void Start() { _player = GetComponentInParent<Player>(); _cooldownWFS = new WaitForSeconds(_cooldown); }
+        private void Start() { _player = GetComponentInParent<Player>(); _cooldownWFS = new WaitForSeconds(Cooldown); }
         public void Rotate(RotationType rotationType)
         {
-            if(!_isBlending)
+            if(!_player.IsBlending)
             {
                 if(_player.CurrentCameraIndex != 0) _player.Cameras[_player.CurrentCameraIndex].Priority = _player.Cameras[0].Priority;
                 int newIndex = _player.CurrentCameraIndex;
@@ -21,17 +20,18 @@ namespace Q17pD.Frostwatch.Player
                 else newIndex = _player.CurrentCameraIndex == 0 ? 3 : newIndex - 1;
                 if(newIndex != 0) _player.Cameras[0].Priority = _player.Cameras[newIndex].Priority;
                 _player.Cameras[newIndex].Priority = _player.Cameras.Count;
-                _player.CurrentCameraIndex = newIndex;
-                StartCoroutine(BlendingCoroutine());
+                StartCoroutine(BlendingCoroutine(newIndex));
             } 
         }
-        private IEnumerator BlendingCoroutine()
+        private IEnumerator BlendingCoroutine(int newIndex)
         {
-            _isBlending = true;
+            _player.IsBlending = true;
             yield return _cooldownWFS;
                 while (_player.Brain.IsBlending) yield return null;
+            _player.PlayerCanvasHandler.UpdateActions(newIndex);
+            _player.CurrentCameraIndex = newIndex;
             yield return _cooldownWFS;
-            _isBlending = false;
+            _player.IsBlending = false;
         }
     }
     public enum RotationType { Left, Right }
