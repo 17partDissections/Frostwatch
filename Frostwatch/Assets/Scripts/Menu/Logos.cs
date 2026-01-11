@@ -8,6 +8,7 @@ namespace Q17pD.Frostwatch.Menu
 {
     public class Logos : MonoBehaviour
     {
+        [SerializeField] private bool _skip;
         [SerializeField] private List<Logo> _logos;
          [SerializeField] private Image _logosBg;
         [SerializeField] private Image _logosDarkeningPanel;
@@ -17,6 +18,7 @@ namespace Q17pD.Frostwatch.Menu
 
         private IEnumerator Start()
         {
+            if(_skip) { _mainObj.SetActive(true); _logosDarkeningPanel.enabled = false; _logosBg.enabled = false; StopAllCoroutines(); }
             yield return new WaitForSeconds(_darkeningTime);
             foreach(Logo logo in _logos)
             {

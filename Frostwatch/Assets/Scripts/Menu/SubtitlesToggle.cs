@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Menu
 {
     public class SubtitlesToggle : MonoBehaviour
     {
