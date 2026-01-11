@@ -1,37 +1,44 @@
-//BasicAnswers
-Yes=Да
-No=Нет
-Enabled=Включено
-Disabled=Отключено
-//Menu
-CampaignButton=Кампания
-EndlessModeButton=Бесконечный режим
-OptionsButton=Настройки
-CreditsButton=Титры
-QuitButton=Выход
-ApplyButton=Применить
-BackButton=Назад
-SoundButton=Звук
-VideoButton=Видео
-LanguageButton=Язык
-SFX=SFX
-Music=Музыка
-Subtitles=Subtitles
-Pixelation=Pixelation
-ForcedCameraRatio=Forced 5:4 camera ratio
-//EventInteractiveObjects
-RadioName=Радио
-RadioDescription=Громкое пыльное радио. Переключатель застрял между станциями.
-CampfireName=Костер
-CampfireDescription=Главный источник тепла на сегодня.
-//PickupableObjects
-WalkieTalkieName=Рация
-WalkieTalkieDescription=Потрёпанная рация армейского образца.
-MosinRifleName=Винтовка Мосина обр.1891/30 г.
-MosinRifleDescription=Надёжный ветеран бесчисленных сражений. От неё пахнет оружейным маслом, порохом и историей.
-//Actions
-Drop=Выбросить
-DropFire=Выбросить в костер
-Shoot=Выстрелить
-//Voicelines
-//Disclaimers
+#BasicAnswers
+	Yes=Да
+	No=Нет
+#Menu
+	CampaignButton=Кампания
+	EndlessModeButton=Бесконечный режим
+	OptionsButton=Настройки
+	CreditsButton=Титры
+	QuitButton=Выход
+	ApplyButton=Применить
+	BackButton=Назад
+	Enabled=Включено
+	Disabled=Отключено
+	SoundButton=Звук
+	VideoButton=Видео
+	LanguageButton=Язык
+	SFX=SFX
+	Music=Музыка
+	Subtitles=Субтитры
+	Pixelation=Пикселяция
+	ForcedCameraRatio=Принудительное 5:4 соотношение
+#EventInteractiveObjects
+	RadioName=Радио
+	RadioDescription=Громкое пыльное радио. Переключатель застрял между станциями.
+	CampfireName=Костер
+	CampfireDescription=Главный источник тепла на сегодня.
+#PickupableObjects
+	WalkieTalkieName=Рация
+	WalkieTalkieDescription=Потрёпанная рация армейского образца.
+	MosinRifleName=Винтовка Мосина обр.1891/30 г.
+	MosinRifleDescription=Надёжный ветеран бесчисленных сражений. От неё пахнет оружейным маслом, порохом и историей.
+#Actions
+	Drop=Выбросить
+	DropFire=Выбросить в костер
+	Shoot=Выстрелить
+#Voicelines
+#Endings(im too lazy to rewrite localization's scipt logic, so i just split the prhase "you unlocked n of x endings.")
+	EndMessage1=Вы открыли
+	EndMessage1_1=Вы открыли только
+	EndMessage2=из
+	EndMessage3=концовок.
+	End1="Суицидальная концовка"
+	End2="Братоубийственная концовка"
+	End3="Жертвенная концовка"

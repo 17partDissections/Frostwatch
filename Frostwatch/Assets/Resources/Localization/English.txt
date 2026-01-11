@@ -1,34 +1,44 @@
-//BasicAnswers
-Yes=Yes
-No=No
-Enabled=Enabled
-Disabled=Disabled
-//Menu
-CampaignButton=Play Campaign
-EndlessModeButton=Play Endless Mode
-OptionsButton=Options
-CreditsButton=Credits
-QuitButton=Quit
-ApplyButton=Apply
-BackButton=Back
-SoundButton=Sound
-VideoButton=Video
-LanguageButton=Language
-SFX=SFX
-Music=Music
-//EventInteractiveObjects
-RadioName=Radio
-RadioDescription=A loud dust radio. The dial is stuck between frequencies.
-CampfireName=Campfire
-CampfireDescription=Main source of heat for today.
-//PickupableObjects
-WalkieTalkieName=Walkie-Talkie
-WalkieTalkieDescription=A battered, military-issue walkie-talkie. 
-MosinRifleName=Mosin-Nagant M1891/30
-MosinRifleDescription=A reliable veteran of countless battles. It smells of gun oil, powder and history.
-//Actions
-Drop=Drop
-DropFire=Drop into fire
-Shoot=Shoot
-//Voicelines
-//Disclaimers
+#BasicAnswers
+	Yes=Yes
+	No=No
+#Menu
+	CampaignButton=Play Campaign
+	EndlessModeButton=Play Endless Mode
+	OptionsButton=Options
+	CreditsButton=Credits
+	QuitButton=Quit
+	ApplyButton=Apply
+	BackButton=Back
+	Enabled=Enabled
+	Disabled=Disabled
+	SoundButton=Sound
+	VideoButton=Video
+	LanguageButton=Language
+	SFX=SFX
+	Music=Music
+	Subtitles=Subtitles
+	Pixelation=Pixelation
+	ForcedCameraRatio=Forced 5:4 camera ratio
+#EventInteractiveObjects
+	RadioName=Radio
+	RadioDescription=A loud dust radio. The dial is stuck between frequencies.
+	CampfireName=Campfire
+	CampfireDescription=Main source of heat for today.
+#PickupableObjects
+	WalkieTalkieName=Walkie-Talkie
+	WalkieTalkieDescription=A battered, military-issue walkie-talkie.
+	MosinRifleName=Mosin-Nagant M1891/30
+	MosinRifleDescription=A reliable veteran of countless battles. It smells of gun oil, powder and history.
+#Actions
+	Drop=Drop
+	DropFire=Drop into fire
+	Shoot=Shoot
+#Voicelines
+#Endings(im too lazy to rewrite localization's scipt logic, so i just split the prhase "you unlocked n of x endings.")
+	EndMessage1=You unlocked
+	EndMessage1_1=You unlocked only
+	EndMessage2=of
+	EndMessage3=endings.
+	End1="Suicide ending"
+	End2="Fratricide ending"
+	End3="Sacrifice ending"
