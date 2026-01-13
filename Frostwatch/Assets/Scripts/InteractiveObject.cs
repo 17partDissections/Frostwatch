@@ -21,7 +21,7 @@ namespace Q17pD.Frostwatch
         protected virtual void Start()
         {
             _outline.OutlineMode = Outline.Mode.OutlineVisible;
-            _outline.OutlineColor = Color.white;
+            //_outline.OutlineColor = Color.white;
             _outline.OutlineWidth = 5;
             _outline.enabled = false;
         }

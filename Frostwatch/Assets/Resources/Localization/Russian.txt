@@ -29,6 +29,8 @@
 	WalkieTalkieDescription=Потрёпанная рация армейского образца.
 	MosinRifleName=Винтовка Мосина обр.1891/30 г.
 	MosinRifleDescription=Надёжный ветеран бесчисленных сражений. От неё пахнет оружейным маслом, порохом и историей.
+	BranchName=Ветка
+	BranchDescription=Можно использовать для поддержания огня.
 #Actions
 	Drop=Выбросить
 	DropFire=Выбросить в костер

@@ -7,7 +7,7 @@ namespace Q17pD.Frostwatch
     public class PickupableObject : InteractiveObject
     {
         [SerializeField] private int _index;
-        [SerializeField] private GameObject _objToMove;
+        public GameObject ObjToMove;
         [SerializeField] private Transform _moveFinalTransform;
         [SerializeField] private AudioClip _pickupSound;
         private Vector3 _originalPos;
@@ -17,16 +17,16 @@ namespace Q17pD.Frostwatch
         [Inject] private void Construct(Player.Player player)
         {
             _playerIH = player.PlayerItemHandler;
-            _originalPos = transform.position;
-            if (_objToMove == null) _objToMove = gameObject;
+            if (ObjToMove == null) ObjToMove = gameObject;
         }
+        private void OnEnable() { _originalPos = ObjToMove.transform.position; }
         public override void OnMouseEnter()
         {
             base.OnMouseEnter();
             if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
-                _objToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
+                ObjToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
             }
         }
         public override void OnMouseExit()
@@ -35,7 +35,7 @@ namespace Q17pD.Frostwatch
             if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
-                _objToMove.transform.DOMove(_originalPos, 0.1f).OnComplete(() => _isMoving = false);
+                ObjToMove.transform.DOMove(_originalPos, 0.1f).OnComplete(() => _isMoving = false);
             }
         }
         public override void OnMouseDown()
@@ -44,7 +44,7 @@ namespace Q17pD.Frostwatch
             if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
-                _objToMove.transform.DOMove
+                ObjToMove.transform.DOMove
                 (
                     _player.PickupableObjectsFinalTransform.position, 0.2f
                 ).OnComplete

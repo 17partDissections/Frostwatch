@@ -436,7 +436,7 @@ MonoBehaviour:
   _localeDescriptionKey: MosinRifleDescription
   _enterSound: {fileID: 0}
   _index: 1
-  _objToMove: {fileID: 7492237149351067053}
+  ObjToMove: {fileID: 7492237149351067053}
   _moveFinalTransform: {fileID: 367503762728434199}
   _pickupSound: {fileID: 0}
 --- !u!1 &7492237149351067053
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 5280147940693476894}
   - component: {fileID: 3995939849378123273}
   m_Layer: 0
-  m_Name: MosinRifle
+  m_Name: Model
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

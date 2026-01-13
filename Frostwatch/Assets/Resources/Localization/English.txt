@@ -29,6 +29,8 @@
 	WalkieTalkieDescription=A battered, military-issue walkie-talkie.
 	MosinRifleName=Mosin-Nagant M1891/30
 	MosinRifleDescription=A reliable veteran of countless battles. It smells of gun oil, powder and history.
+	BranchName=Branch
+	BranchDescription=Can be used to keep campfire burn.
 #Actions
 	Drop=Drop
 	DropFire=Drop into fire
