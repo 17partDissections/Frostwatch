@@ -40,7 +40,9 @@ namespace Q17pD.Frostwatch
         }
         public override void OnMouseDown()
         {
-            base.OnMouseDown();
+            _player.PlayerCanvasHandler.ClearInfo();
+            _outline.enabled = false;
+            _cursorHandler.SetCursor("Default");
             if (!_playerIH.IsPlayerHoldingItem())
             {
                 _isMoving = true;
@@ -53,8 +55,8 @@ namespace Q17pD.Frostwatch
                         {
                             _isMoving = false;
                             _audioHandler.PlaySFX(_pickupSound, 0);
-                            _playerIH.AddItem(_index);
-                            transform.position = _originalPos;
+                            ObjToMove.transform.position = _originalPos;
+                            _playerIH.AddItem(_index, gameObject);
                             gameObject.SetActive(false);
                         }
                     );
