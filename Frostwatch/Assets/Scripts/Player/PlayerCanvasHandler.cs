@@ -53,6 +53,7 @@ namespace Q17pD.Frostwatch.Player
                 
             }
         }
+        public void HideActions() { foreach (Button buttツ in _buttons) buttツ.gameObject.SetActive(false); }
         public void ActionButtonDown(int index) { _currentActions[index].Act(); }
     }
 }

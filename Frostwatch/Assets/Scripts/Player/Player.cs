@@ -10,8 +10,9 @@ namespace Q17pD.Frostwatch.Player
         public Transform PickupableObjectsFinalTransform;
         [HideInInspector] public CinemachineBrain Brain;
         public List<CinemachineVirtualCamera> Cameras;
-        public int CurrentCameraIndex;
-        [HideInInspector] public bool IsBlending;
+        [HideInInspector] public int CurrentCameraIndex;
+        [HideInInspector] public bool IsMoving;
+        [HideInInspector] public bool IsHoldingItem;
         [HideInInspector] public PlayerRotation PlayerRotation;
         [HideInInspector] public PlayerAnimation PlayerAnimation;
         [HideInInspector] public PlayerItemHandler PlayerItemHandler;

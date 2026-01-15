@@ -12,7 +12,7 @@ namespace Q17pD.Frostwatch.Player
         private void Start() { _player = GetComponentInParent<Player>(); _cooldownWFS = new WaitForSeconds(Cooldown); }
         public void Rotate(RotationType rotationType)
         {
-            if(!_player.IsBlending)
+            if(!_player.IsMoving)
             {
                 if(_player.CurrentCameraIndex != 0) _player.Cameras[_player.CurrentCameraIndex].Priority = _player.Cameras[0].Priority;
                 int newIndex = _player.CurrentCameraIndex;
@@ -25,13 +25,13 @@ namespace Q17pD.Frostwatch.Player
         }
         private IEnumerator BlendingCoroutine(int newIndex)
         {
-            _player.IsBlending = true;
+            _player.IsMoving = true;
             yield return _cooldownWFS;
                 while (_player.Brain.IsBlending) yield return null;
             _player.PlayerCanvasHandler.UpdateActions(newIndex);
             _player.CurrentCameraIndex = newIndex;
             yield return _cooldownWFS;
-            _player.IsBlending = false;
+            _player.IsMoving = false;
         }
     }
     public enum RotationType { Left, Right }

@@ -15,7 +15,7 @@ namespace Q17pD.Frostwatch.Player
         }
         public void ChangeAnimation(int index)
         {
-            if (index == -1) { _animator.SetBool("Idle", false); }
+            if (index == -1) { _animator.SetBool("Idle", true); }
             else
             {
                 string newAnim = _animations[index];
