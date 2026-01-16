@@ -183,11 +183,11 @@ MonoBehaviour:
   _outline: {fileID: 5536874219627500794}
   _localeNameKey: BranchName
   _localeDescriptionKey: BranchDescription
-  _enterSound: {fileID: 0}
-  _index: 3
+  _enterSound: {fileID: 8300000, guid: b02ea2377d0fbf731af476e803284e17, type: 3}
+  _index: 2
   ObjToMove: {fileID: 2276274007864262943}
   _moveFinalTransform: {fileID: 160961284559243634}
-  _pickupSound: {fileID: 0}
+  _pickupSound: {fileID: 8300000, guid: 8cc2439e8419152a4a20acf97250b7db, type: 3}
 --- !u!65 &8177483014765632287
 BoxCollider:
   m_ObjectHideFlags: 0

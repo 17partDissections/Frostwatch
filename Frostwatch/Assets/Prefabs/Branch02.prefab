@@ -50,11 +50,11 @@ MonoBehaviour:
   _outline: {fileID: 6818776173903451643}
   _localeNameKey: BranchName
   _localeDescriptionKey: BranchDescription
-  _enterSound: {fileID: 0}
-  _index: 3
+  _enterSound: {fileID: 8300000, guid: b02ea2377d0fbf731af476e803284e17, type: 3}
+  _index: 2
   ObjToMove: {fileID: 9196951232046187429}
   _moveFinalTransform: {fileID: 6130827001190323892}
-  _pickupSound: {fileID: 0}
+  _pickupSound: {fileID: 8300000, guid: 8cc2439e8419152a4a20acf97250b7db, type: 3}
 --- !u!65 &6350367490524635778
 BoxCollider:
   m_ObjectHideFlags: 0

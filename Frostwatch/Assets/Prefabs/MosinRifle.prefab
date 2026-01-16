@@ -434,7 +434,7 @@ MonoBehaviour:
   _outline: {fileID: 3995939849378123273}
   _localeNameKey: MosinRifleName
   _localeDescriptionKey: MosinRifleDescription
-  _enterSound: {fileID: 0}
+  _enterSound: {fileID: 8300000, guid: 0444b729d978adc93b4828870ef17d0a, type: 3}
   _index: 1
   ObjToMove: {fileID: 7492237149351067053}
   _moveFinalTransform: {fileID: 367503762728434199}

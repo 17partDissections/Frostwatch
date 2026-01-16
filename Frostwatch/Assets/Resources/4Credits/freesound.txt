@@ -8,5 +8,11 @@
 "jd stick.wav" - zinzan_101
 "palo de escoba.m4a" - jupiter089
 "Grab 2.ogg" - ihitokage
-"Rifle dropped on floor 3x" - serøtōnin
+"Rifle dropped on floor 3x.wav" - serøtōnin
 "Winter Wind B.wav" - Trashcan_Studios
+"Lighting a match.wav" - InfamousJase
+"Campfire deer camp.wav" - Ambient-X
+"Stepping on branch.wav" - CrazyChuy
+"Clothes Rustling Movement 13_22.wav" - Joao_Janz
+"Clothes Rustling Movement 13_23.wav" - Joao_Janz
+"Clothes Rustling Movement 13_24.wav" - Joao_Janz
