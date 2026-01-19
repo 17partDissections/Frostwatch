@@ -9,11 +9,10 @@ namespace Q17pD.Frostwatch
     {
         [SerializeField] private List<GameObject> _branches;
         [SerializeField] private List<BranchSpawnPoint> _spawnPoints;
-        [Range(1, 120)][SerializeField] private int _cooldown;
+        [Range(30, 120)][SerializeField] private int _cooldown;
         private IEnumerator Start()
         {
             WaitForSeconds cooldown = new WaitForSeconds(_cooldown);
-            //foreach (GameObject branch in _branches) branch.SetActive(false);
             while (true)
             {
                 yield return cooldown;
@@ -26,7 +25,6 @@ namespace Q17pD.Frostwatch
                 freeBranch.transform.position = point.transform.position + new Vector3(Random.Range(0f, 1f), 0, Random.Range(0f, 1f));
                 freeBranch.GetComponentInChildren<PickupableObject>().ObjToMove.transform.Rotate(new Vector3(0, Random.Range(-360, 360), 0));
                 freeBranch.SetActive(true);
-                Debug.Log("yo dude i spawned a branch");
             }
         }
     }

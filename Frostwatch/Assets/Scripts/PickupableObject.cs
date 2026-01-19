@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using Zenject;
+using UnityEditor.Experimental.GraphView;
 
 namespace Q17pD.Frostwatch
 {
@@ -12,27 +13,28 @@ namespace Q17pD.Frostwatch
         [SerializeField] private AudioClip _pickupSound;
         private Vector3 _originalPos;
         private bool _isMoving;
-        private Player.PlayerItemHandler _playerIH;
 
-        [Inject] private void Construct(Player.Player player)
+        private void Awake() { if (ObjToMove == null) ObjToMove = gameObject; }
+        private void OnEnable()
         {
-            _playerIH = player.PlayerItemHandler;
-            if (ObjToMove == null) ObjToMove = gameObject;
+            _originalPos = ObjToMove.transform.position;
+            ObjToMove.transform.position = _moveFinalTransform.position;
+            ObjToMove.transform.DOMove(_originalPos, 0.25f);
         }
-        private void OnEnable() { _originalPos = ObjToMove.transform.position; }
         public override void OnMouseEnter()
         {
             base.OnMouseEnter();
-            if (!_playerIH.IsPlayerHoldingItem())
+            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
             {
                 _isMoving = true;
                 ObjToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
             }
+
         }
         public override void OnMouseExit()
         {
             base.OnMouseExit();
-            if (!_playerIH.IsPlayerHoldingItem())
+            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
             {
                 _isMoving = true;
                 ObjToMove.transform.DOMove(_originalPos, 0.1f).OnComplete(() => _isMoving = false);
@@ -43,7 +45,7 @@ namespace Q17pD.Frostwatch
             _player.PlayerCanvasHandler.ClearInfo();
             _outline.enabled = false;
             _cursorHandler.SetCursor("Default");
-            if (!_playerIH.IsPlayerHoldingItem())
+            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
             {
                 _isMoving = true;
                 ObjToMove.transform.DOMove
@@ -56,7 +58,7 @@ namespace Q17pD.Frostwatch
                             _isMoving = false;
                             _audioHandler.PlaySFX(_pickupSound, 0);
                             ObjToMove.transform.position = _originalPos;
-                            _playerIH.AddItem(_index, gameObject);
+                            _player.PlayerItemHandler.AddItem(_index, gameObject);
                             gameObject.SetActive(false);
                         }
                     );

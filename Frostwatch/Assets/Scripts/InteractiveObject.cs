@@ -11,6 +11,7 @@ namespace Q17pD.Frostwatch
         protected CursorHandler _cursorHandler;
         protected AudioHandler _audioHandler;
         protected Player.Player _player;
+        [SerializeField] protected bool _ignorePlayerHoldingItem;
 
         [Inject] private void Construct(CursorHandler cursorHandler, AudioHandler aH, Player.Player player)
         {
@@ -26,7 +27,7 @@ namespace Q17pD.Frostwatch
         }
         public virtual void OnMouseEnter()
         {
-            if (!_player.IsMoving && !_player.IsHoldingItem)
+            if (!_player.IsMoving && (_ignorePlayerHoldingItem || !_player.IsHoldingItem))
             {
                 _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);
                 _outline.enabled = true;

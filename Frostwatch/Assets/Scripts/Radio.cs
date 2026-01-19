@@ -11,12 +11,14 @@ namespace Q17pD.Frostwatch
 
         public override void OnMouseDown()
         {
-            if(!_on) { _on = true; StartCoroutine(SoundCoroutine()); }
-            else { _on = false; StopAllCoroutines(); _audioHandler.StopSFX(); }
+            if(!_player.IsMoving && !_player.IsHoldingItem)
+            {
+                if(!_on) { _on = true; StartCoroutine(SoundCoroutine()); }
+                else { _on = false; StopAllCoroutines(); _audioHandler.StopSFX(); }
+            }
         }
         private IEnumerator SoundCoroutine()
         {
-            Debug.Log("asd");
             AudioClip sound = _sounds[Random.Range(0, _sounds.Count)];
             WaitForSeconds sleep = new WaitForSeconds(sound.length);
             while (true)

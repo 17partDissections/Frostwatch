@@ -55,6 +55,7 @@ MonoBehaviour:
   ObjToMove: {fileID: 5545881280946824802}
   _moveFinalTransform: {fileID: 2784939780069278709}
   _pickupSound: {fileID: 8300000, guid: 8cc2439e8419152a4a20acf97250b7db, type: 3}
+  _ignorePlayerHoldingItem: 1
 --- !u!65 &6567186171983419869
 BoxCollider:
   m_ObjectHideFlags: 0
