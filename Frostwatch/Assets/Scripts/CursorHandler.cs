@@ -5,7 +5,7 @@ namespace Q17pD.Frostwatch
 {
     public class CursorHandler : MonoBehaviour
     {
-        private Vector2 _hotSpot = Vector2.zero;
+        private Vector2 _hotSpot = new Vector2(15,0);
         private Dictionary<string, Texture2D> _cursors = new Dictionary<string, Texture2D>();
 
         private void Start() { SetCursor("Default"); }

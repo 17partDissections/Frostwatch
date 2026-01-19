@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -17,21 +18,24 @@ namespace Q17pD.Frostwatch.Player
             _audioHandler = audioHandler;
             for (int i = 0; i < _items.Count; i++) _pickupableObjs.Add(null);
         }
-        public bool IsPlayerHoldingItem() { if (_currentItemIndex != -1) return true; return false; }
         public void AddItem(int index, GameObject invoker)
         {            
             _currentItemIndex = index;
-            _pickupableObjs[_currentItemIndex] = invoker;
+            if(_items[_currentItemIndex].TryGetComponent<MultipleInventoryItem>(out MultipleInventoryItem MII)) MII.AddVisualObj();
+            else _pickupableObjs[_currentItemIndex] = invoker;
             _items[_currentItemIndex].SetActive(true);
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
+            _player.IsHoldingItem = true;
+        }
+        public void ContinueAddingItem()
+        {
+            Debug.Log("asd");
             _items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem);
             foreach (InventoryAction action in inventoryItem.Actions) { action.Init(_player, _audioHandler); }
             _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
-            _player.IsHoldingItem = true;
-
         }
         public void DropItem() 
-        { 
+        {
             _items[_currentItemIndex].SetActive(false);
             _pickupableObjs[_currentItemIndex].SetActive(true);
             _currentItemIndex = -1;

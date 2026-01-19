@@ -45,12 +45,14 @@ namespace Q17pD.Frostwatch.Player
             if (actions != null && actionsVectors != null) { _currentActions = actions; _currentActionsVectors = actionsVectors; }
             for (int i = 0; i < _currentActions.Count; i++)
             {
-                if (!_currentActionsVectors[i].Vectors[CurrentCameraIndex]) continue;
-                _buttons[i].gameObject.SetActive(true);
-                LocalizeTMPro l = _buttons[i].GetComponentInChildren<LocalizeTMPro>();
-                l.localizationKey = _currentActions[0].LocalizationKey;
-                l.UpdateLocale();
-                
+                if (_currentActionsVectors[i].Vectors[CurrentCameraIndex])
+                {
+                    _buttons[i].gameObject.SetActive(true);
+                    LocalizeTMPro l = _buttons[i].GetComponentInChildren<LocalizeTMPro>();
+                    l.localizationKey = _currentActions[i].LocalizationKey;
+                    l.UpdateLocale();
+                }
+                else _buttons[i].gameObject.SetActive(false);
             }
         }
         public void HideActions() { foreach (Button buttツ in _buttons) buttツ.gameObject.SetActive(false); }
