@@ -9416,7 +9416,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1
-    functionName: Invoke
+    functionName: Inv
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
