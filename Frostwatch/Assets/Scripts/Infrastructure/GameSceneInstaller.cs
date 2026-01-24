@@ -7,11 +7,13 @@ namespace Q17pD.Frostwatch.Infrastructure
     {
         [SerializeField] private AudioHandler _audioHandler;
         [SerializeField] private Player.Player _player;
+        [SerializeField] private PickupableObject _branches;
         public override void InstallBindings()
         {
             BindCursorHandler();
             BindAudioHandler();
             BindPlayer();
+            BindBranches();
         }
 
         private void BindCursorHandler()
@@ -35,6 +37,14 @@ namespace Q17pD.Frostwatch.Infrastructure
             Container
                 .Bind<Player.Player>()
                 .FromInstance(_player)
+                .AsSingle()
+                .NonLazy();
+        }
+                private void BindBranches()
+        {
+            Container
+                .Bind<PickupableObject>()
+                .FromInstance(_branches)
                 .AsSingle()
                 .NonLazy();
         }
