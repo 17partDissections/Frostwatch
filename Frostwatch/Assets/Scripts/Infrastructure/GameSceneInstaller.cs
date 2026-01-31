@@ -1,5 +1,6 @@
 using Zenject;
 using UnityEngine;
+using Q17pD.Frostwatch.Interactive;
 
 namespace Q17pD.Frostwatch.Infrastructure
 {

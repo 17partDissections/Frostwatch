@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Q17pD.Frostwatch.Player;
 using UnityEngine;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Player
 {
     public class AnimationInvoker : MonoBehaviour
     {

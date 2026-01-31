@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Inventory
 {
     public abstract class InventoryItem : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Interactive
 {
     public class PickupableObject : InteractiveObject
     {

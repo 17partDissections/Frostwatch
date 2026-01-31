@@ -1,6 +1,6 @@
+using Q17pD.Frostwatch.Interactive;
+using Q17pD.Frostwatch.Inventory;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 

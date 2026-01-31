@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Interactive
 {
     public abstract class InteractiveObject : MonoBehaviour
     {

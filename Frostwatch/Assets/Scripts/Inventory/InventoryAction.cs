@@ -1,4 +1,4 @@
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Inventory
 {
     public abstract class InventoryAction
     {

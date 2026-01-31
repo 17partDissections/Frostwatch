@@ -1,4 +1,5 @@
 using DFTGames.Localization;
+using Q17pD.Frostwatch.Inventory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

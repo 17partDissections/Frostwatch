@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System.Linq;
+using Q17pD.Frostwatch.Interactive;
 
 namespace Q17pD.Frostwatch
 {

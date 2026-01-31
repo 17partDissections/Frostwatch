@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Interactive
 {
     public class Radio : InteractiveObject
     {

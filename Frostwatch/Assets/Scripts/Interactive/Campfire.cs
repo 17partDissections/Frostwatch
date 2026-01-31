@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Interactive
 {
     public class Campfire : InteractiveObject
     {
