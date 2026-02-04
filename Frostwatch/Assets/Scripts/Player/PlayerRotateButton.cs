@@ -47,6 +47,7 @@ namespace Q17pD.Frostwatch.Player
                 _repeatRoutine = null;
             }
         }
-        public void OnPointerDown(PointerEventData eventData) { if (!_autoRotate) _playerRotation.Rotate(_rotationType); }
+        public void OnPointerDown(PointerEventData eventData) { if (!_autoRotate) Rotate(); }
+        public void Rotate() { _playerRotation.Rotate(_rotationType); }
     }
 }

@@ -28,6 +28,7 @@ namespace Q17pD.Frostwatch.Player
                 else newIndex = _player.CurrentCameraIndex == 0 ? 3 : newIndex - 1;
                 if(newIndex != 0) _player.Cameras[0].Priority = _player.Cameras[newIndex].Priority;
                 _player.Cameras[newIndex].Priority = _player.Cameras.Count;
+                _player.PlayerCanvasHandler.HideActions();
                 StartCoroutine(RotatingCoroutine(newIndex));
             } 
         }

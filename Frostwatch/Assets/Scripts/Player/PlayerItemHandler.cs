@@ -28,7 +28,6 @@ namespace Q17pD.Frostwatch.Player
             {
                 if(invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { MII.AddVisualObj(); } invoker.ClearVisualObjs(); }
                 else MII.AddVisualObj();
-                
             }
             else _pickupableObjs[_currentItemIndex] = invoker;
             _items[_currentItemIndex].SetActive(true);

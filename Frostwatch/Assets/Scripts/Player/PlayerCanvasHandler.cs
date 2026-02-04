@@ -1,7 +1,7 @@
 using DFTGames.Localization;
 using Q17pD.Frostwatch.Inventory;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +9,7 @@ namespace Q17pD.Frostwatch.Player
 {
     public class PlayerCanvasHandler : MonoBehaviour
     {
+        public Image DarkeningPanel;
         [SerializeField] private UIHighlight _itemInfoBg;
         [SerializeField] private LocalizeTMPro _name, _description;
         [SerializeField] private float _hightlightTime = 0.25f;
@@ -43,17 +44,18 @@ namespace Q17pD.Frostwatch.Player
         }
         public void UpdateActions(int CurrentCameraIndex, List<InventoryAction> actions = null, List<ActionVectors> actionsVectors = null)
         {
+            HideActions();
             if (actions != null && actionsVectors != null) { _currentActions = actions; _currentActionsVectors = actionsVectors; }
             for (int i = 0; i < _currentActions.Count; i++)
             {
-                if (_currentActionsVectors[i].Vectors[CurrentCameraIndex])
+                if (_currentActionsVectors[i].Vectors[CurrentCameraIndex] && _currentActions[i].IsCustomConditionSatisfied)
                 {
-                    _buttons[i].gameObject.SetActive(true);
-                    LocalizeTMPro l = _buttons[i].GetComponentInChildren<LocalizeTMPro>();
+                    Button button = _buttons.FirstOrDefault(x => !x.gameObject.activeSelf);
+                    button.gameObject.SetActive(true);
+                    LocalizeTMPro l = button.GetComponentInChildren<LocalizeTMPro>();
                     l.localizationKey = _currentActions[i].LocalizationKey;
                     l.UpdateLocale();
                 }
-                else _buttons[i].gameObject.SetActive(false);
             }
         }
         public void HideActions() { foreach (Button buttツ in _buttons) buttツ.gameObject.SetActive(false); }
