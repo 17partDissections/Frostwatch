@@ -1702,6 +1702,7 @@ RectTransform:
   - {fileID: 3468192570094943724}
   - {fileID: 805373447283319965}
   - {fileID: 5155095562257051128}
+  - {fileID: 2522701315693145728}
   - {fileID: 5303495273366706166}
   - {fileID: 3893334882992650702}
   - {fileID: 811515055134331835}
@@ -1789,6 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9ae8fe2353b8a3eaf4e0bd5db55ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DarkeningPanel: {fileID: 0}
   _itemInfoBg: {fileID: 7038874070371273504}
   _name: {fileID: 727611367634342344}
   _description: {fileID: 702673975493766147}
@@ -2327,8 +2329,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5039965229121473335}
-  - component: {fileID: 3769792493354392659}
   - component: {fileID: 7063887738874299836}
+  - component: {fileID: 8407733691580256449}
   m_Layer: 0
   m_Name: MosinRifle
   m_TagString: Item
@@ -2356,25 +2358,6 @@ Transform:
   - {fileID: 530897059049982165}
   m_Father: {fileID: 3198372823170367089}
   m_LocalEulerAnglesHint: {x: 80.335, y: 54.937, z: 234.051}
---- !u!114 &3769792493354392659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3186932190388066668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994f80ad26793ee06857b13300a026cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _index: 1
-  _localizationKey: MosinRIfle
-  _dropSound: {fileID: 8300000, guid: a2a41ecaba04daa87bf56f4fcf104720, type: 3}
-  ActionsVectors:
-  - Vectors: 01000000
-  - Vectors: 00010101
-  - Vectors: 01000000
 --- !u!65 &7063887738874299836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2396,6 +2379,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.07, y: 0.27, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8407733691580256449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186932190388066668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea633bba61ec5c046a8e09c18e77b9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _index: 1
+  _localizationKey: MosinRifle
+  _dropSound: {fileID: 8300000, guid: a2a41ecaba04daa87bf56f4fcf104720, type: 3}
+  ActionsVectors:
+  - Vectors: 01000000
+  - Vectors: 00010101
+  - Vectors: 01000000
+  - Vectors: 01000000
+  _muzzleFlash: {fileID: 1580510392955454397}
+  _shoot: {fileID: 0}
+  _reload: {fileID: 0}
+  _aimAtItself: {fileID: 0}
+  _monstersHandler: {fileID: 0}
+  _player: {fileID: 1565982107874031917}
 --- !u!1 &3317989279136165977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4084,6 +4093,94 @@ Transform:
   - {fileID: 2595275117888478467}
   m_Father: {fileID: 127003991682934178}
   m_LocalEulerAnglesHint: {x: 0.023052895, y: 0.43284136, z: -1.4273151}
+--- !u!1 &6059469376059932020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2522701315693145728}
+  - component: {fileID: 8955784532968769333}
+  - component: {fileID: 883636164757064078}
+  - component: {fileID: 5032452906764791189}
+  m_Layer: 5
+  m_Name: DarkeningPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2522701315693145728
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059469376059932020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2357317579082513308}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0.000061035156}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8955784532968769333
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059469376059932020}
+  m_CullTransparentMesh: 1
+--- !u!114 &883636164757064078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059469376059932020}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5032452906764791189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6059469376059932020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a970203a44abc829aa14c26f60c03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6067438998484088689
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,5 +6181,10 @@ PrefabInstance:
 --- !u!4 &530897059049982165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5886036276923918205, guid: 27d4a77bed51b8c53be7a973f48b62fc, type: 3}
+  m_PrefabInstance: {fileID: 6264866351759077288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1580510392955454397 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4836407593675648021, guid: 27d4a77bed51b8c53be7a973f48b62fc, type: 3}
   m_PrefabInstance: {fileID: 6264866351759077288}
   m_PrefabAsset: {fileID: 0}

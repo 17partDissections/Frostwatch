@@ -35,6 +35,7 @@
 	Drop=Drop
 	DropFire=Drop into fire
 	Shoot=Shoot
+	Suicide=Suicide
 #Voicelines
 #Endings(im too lazy to rewrite localization's scipt logic, so i just split the prhase "you unlocked n of x endings.")
 	EndMessage1=You unlocked
