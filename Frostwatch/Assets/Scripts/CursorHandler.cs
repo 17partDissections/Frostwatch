@@ -14,5 +14,10 @@ namespace Q17pD.Frostwatch
             if (!_cursors.ContainsKey(cursor)) _cursors[cursor] = Resources.Load<Texture2D>("Cursors/" + cursor.ToString());
             Cursor.SetCursor(_cursors[cursor], _hotSpot, CursorMode.Auto);
         }
+        public void LockCursorToggle(bool value)
+        {
+            Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !value;
+        }
     }
 }
