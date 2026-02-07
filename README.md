@@ -13,19 +13,19 @@
 </h1>
 <h3>❄️What is Frostwatch?
 <h4>Frostwatch is an atmospheric(or not. atleast i tried:sob:) point-and-click survival horror game set in a winter wilderness. You are stranded with limited resources and monsters lurking in the woods, and the only resistance you can offer them - is an old and slow Mosin Nagant.
-<p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/Lurk.gif" alt="Lurk.gif" width="600"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/17partDissections/Frostwatch/main/READMEAssets/Lurk.gif" width="600"></p>
 <h3>🎯Keep your rifle nearby!
 <h4>Monsters are not waiting. Defend your life with your only Mosin Nagant.
 <p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/MosinRifle.png" alt="MosinRifle.png" width="600"></p>
 <h3>🔥Keep your campfire alive, unless...
 <h4>Your campfire is your only source of heat and light. Let it die - and the cold or something worse will come for your life.
-<p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/Branches.gif" alt="Branches.gif" width="600"></p>
+<p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/Branches.gif" width="600"></p>
 <h3>🍖Dont forget to eat!
 <h4>Oh, it's the easiest one. You've got a lot of supplies so don't worry about that. Wait, what do you mean you have only 2 food cans left?
 <p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/Meat.png" alt="Meat.png" width="600"></p>
 <h3>🎭And one more thing...
 <h4>The only to quit the Game scene - is to shoot yourself IN-GAME(Cuz why not).
-<p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/Frostwatch/Assets/Textures/UI/Gifs/Suicide.gif" alt="Suicide.png" width="600"></p>
+<p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/Frostwatch/Assets/Textures/UI/Gifs/Suicide.gif" width="600"></p>
 <br><br><br>
 <h3>Credits
 <br>
