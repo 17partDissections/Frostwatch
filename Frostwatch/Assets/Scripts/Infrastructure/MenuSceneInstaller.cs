@@ -11,9 +11,18 @@ namespace Q17pD.Frostwatch.Infrastructure
         [SerializeField] private PP_Pixelated _pixelated;
         public override void InstallBindings()
         {
+            BindCursorHandler();
             BindAudioHandler();
             BindPixelation();
             BindForcedCameraRatio();
+        }
+        private void BindCursorHandler()
+        {
+            Container
+                .Bind<CursorHandler>()
+                .FromInstance(GetComponent<CursorHandler>())
+                .AsSingle()
+                .NonLazy();
         }
         private void BindAudioHandler()
         {

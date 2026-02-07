@@ -9,16 +9,18 @@ namespace Q17pD.Frostwatch.Menu
     public class Logos : MonoBehaviour
     {
         [SerializeField] private bool _skip;
+        [SerializeField] CursorHandler _cursorHandler;
         [SerializeField] private List<Logo> _logos;
-         [SerializeField] private Image _logosBg;
+        [SerializeField] private Image _logosBg;
         [SerializeField] private Image _logosDarkeningPanel;
         [SerializeField] private float _darkeningTime = 1f;
         [SerializeField] private GameObject _mainObj;
-        [SerializeField] private Image _mainDarkeningPanel;
+        [SerializeField] private UIHighlight _mainDarkeningPanel;
 
         private IEnumerator Start()
         {
             if(_skip) { _mainObj.SetActive(true); _logosDarkeningPanel.enabled = false; _logosBg.enabled = false; StopAllCoroutines(); }
+            _cursorHandler.LockCursorToggle(true);
             yield return new WaitForSeconds(_darkeningTime);
             foreach(Logo logo in _logos)
             {
@@ -31,15 +33,17 @@ namespace Q17pD.Frostwatch.Menu
                 logo._logoObj.SetActive(false);
                 
             }
-            _mainDarkeningPanel.enabled = true;
+            _mainDarkeningPanel.gameObject.SetActive(true);
             _mainObj.SetActive(true);
             _logosDarkeningPanel.enabled = false;
             _logosBg.enabled = false;
             yield return new WaitForSeconds(_darkeningTime);
-            _mainDarkeningPanel.DOFade(0f, _darkeningTime);
+            _mainDarkeningPanel.UnHighlightImage(_darkeningTime);
             yield return new WaitForSeconds(_darkeningTime);
-            _mainDarkeningPanel.enabled = false;
+            _mainDarkeningPanel.gameObject.SetActive(false);
+            _cursorHandler.LockCursorToggle(false);
             gameObject.SetActive(false);
+            
         }
     }
     [System.Serializable] public class Logo{ public GameObject _logoObj; [SerializeField] public float _time; }
