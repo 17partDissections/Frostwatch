@@ -13724,7 +13724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &762471994
 Transform:
   m_ObjectHideFlags: 0
@@ -20159,7 +20159,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -31357,7 +31357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1473356938
 Transform:
   m_ObjectHideFlags: 0
@@ -47170,7 +47170,15 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2de17dc066be8703dad501372d255de9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 2100000, guid: eb23bbadbbb2c044d98bbbc43a8ba9ff, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2de17dc066be8703dad501372d255de9, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
       objectReference: {fileID: 2100000, guid: a7d907da9fc17494db431535d2150647, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 2de17dc066be8703dad501372d255de9, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: e7819f4997dfd5c4e97fef46ad52b83c, type: 2}
     - target: {fileID: 919132149155446097, guid: 2de17dc066be8703dad501372d255de9, type: 3}
       propertyPath: m_Name
       value: Terrain
