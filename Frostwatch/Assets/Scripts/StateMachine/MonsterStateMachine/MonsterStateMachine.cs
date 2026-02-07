@@ -32,6 +32,7 @@ namespace Q17pD.StateMachine.Local
         private void Start()
         {
             _animator = GetComponent<Animator>();
+            if (_animator == null) _animator = GetComponentInChildren<Animator>();
             _state = Animator.StringToHash("State"); _crawl = Animator.StringToHash("Crawl");
             _walking = Animator.StringToHash("Walking"); _running = Animator.StringToHash("Running");
             _hit = Animator.StringToHash("Hit"); _death = Animator.StringToHash("Death");

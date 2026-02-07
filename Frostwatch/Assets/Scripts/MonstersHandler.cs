@@ -16,8 +16,8 @@ namespace Q17pD.Frostwatch
         private Player.Player _player;
 
         [Inject] private void Construct(Player.Player player) {  _player = player; }
-
-        private IEnumerator Start()
+        public void StartMonstersCoroutine() { StartCoroutine(MonstersCoroutine());  }
+        private IEnumerator MonstersCoroutine()
         {
             while(true)
             {

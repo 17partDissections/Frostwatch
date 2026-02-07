@@ -48,6 +48,7 @@ namespace Q17pD.Frostwatch
             var interactive = GetComponent<GameSceneInstaller>().Interactive;
             foreach (var obj in interactive) obj.enabled = true;
             _cursorHandler.LockCursorToggle(false);
+            if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
         }
     }
 }
