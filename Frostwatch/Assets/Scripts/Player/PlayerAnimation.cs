@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Q17pD.Frostwatch.Player
 {
@@ -8,6 +9,8 @@ namespace Q17pD.Frostwatch.Player
         [SerializeField] private Animator _animator;
         private List<string> _animations = new List<string>();
         private int _index = -1;
+
+        [Inject] private void Construct(EventBus bus) { bus.OutOfBranches += ChangeAnimation; }
         private void Start()
         {
             int itemAmount = GetComponent<PlayerItemHandler>().GetItemAmount();

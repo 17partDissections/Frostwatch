@@ -24,10 +24,10 @@ namespace Q17pD.Frostwatch.Player
         public void AddItem(int index, PickupableObject invoker)
         {            
             _currentItemIndex = index;
-            if (_items[_currentItemIndex].TryGetComponent<MultipleInventoryItem>(out MultipleInventoryItem MII))
+            if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches branches))
             {
-                if(invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { MII.AddVisualObj(); } invoker.ClearVisualObjs(); }
-                else MII.AddVisualObj();
+                if(invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { branches.AddVisualObj(); } invoker.ClearVisualObjs(); }
+                else branches.AddVisualObj();
             }
             else _pickupableObjs[_currentItemIndex] = invoker;
             _items[_currentItemIndex].SetActive(true);
@@ -44,7 +44,7 @@ namespace Q17pD.Frostwatch.Player
         {
             if(_pickupableObjs[_currentItemIndex] == null) _pickupableObjs[_currentItemIndex] = _branches;
             _pickupableObjs[_currentItemIndex].gameObject.SetActive(true);
-            if(_items[_currentItemIndex].TryGetComponent<MultipleInventoryItem>(out MultipleInventoryItem MII)) 
+            if(_items[_currentItemIndex].TryGetComponent<Branches>(out Branches MII)) 
             {
                 int a = 0;
                 int pickupableVisualObjs = _pickupableObjs[_currentItemIndex].HasObjs();

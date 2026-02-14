@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Q17pD.Frostwatch
+namespace Q17pD.Frostwatch.Player
 {
     public class PlayerPrefsInit : MonoBehaviour
     {

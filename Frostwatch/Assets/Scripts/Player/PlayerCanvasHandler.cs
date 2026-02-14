@@ -16,6 +16,7 @@ namespace Q17pD.Frostwatch.Player
         private UIHighlight _nameHighlight, _descriptionHighlight;
         [SerializeField] private List<Button> _buttons;
         private List<InventoryAction> _currentActions = new List<InventoryAction>();
+        private List<InventoryAction> _buttonActions = new List<InventoryAction> { null, null };
         private List<ActionVectors> _currentActionsVectors = new List<ActionVectors>();
         private bool _busy;
 
@@ -51,6 +52,7 @@ namespace Q17pD.Frostwatch.Player
                 if (_currentActionsVectors[i].Vectors[CurrentCameraIndex] && _currentActions[i].IsCustomConditionSatisfied)
                 {
                     Button button = _buttons.FirstOrDefault(x => !x.gameObject.activeSelf);
+                    _buttonActions[_buttons.FindIndex(x => !x.gameObject.activeSelf)] = _currentActions[i];
                     button.gameObject.SetActive(true);
                     LocalizeTMPro l = button.GetComponentInChildren<LocalizeTMPro>();
                     l.localizationKey = _currentActions[i].LocalizationKey;
@@ -59,6 +61,6 @@ namespace Q17pD.Frostwatch.Player
             }
         }
         public void HideActions() { foreach (Button buttツ in _buttons) buttツ.gameObject.SetActive(false); }
-        public void ActionButtonDown(int index) { _currentActions[index].Act(); }
+        public void ActionButtonDown(int index) { _buttonActions[index].Act(); }
     }
 }
