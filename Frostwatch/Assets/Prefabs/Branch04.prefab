@@ -153,11 +153,13 @@ MonoBehaviour:
   _localeNameKey: BranchName
   _localeDescriptionKey: BranchDescription
   _enterSound: {fileID: 8300000, guid: b02ea2377d0fbf731af476e803284e17, type: 3}
-  _index: 2
+  _ignorePlayerHoldingItem: 1
+  _index: 6
   ObjToMove: {fileID: 944395213349235494}
   _moveFinalTransform: {fileID: 3247395888827114690}
   _pickupSound: {fileID: 8300000, guid: 8cc2439e8419152a4a20acf97250b7db, type: 3}
-  _ignorePlayerHoldingItem: 1
+  IsMultiple: 0
+  _visualObjs: []
 --- !u!65 &7971074882875133735
 BoxCollider:
   m_ObjectHideFlags: 0

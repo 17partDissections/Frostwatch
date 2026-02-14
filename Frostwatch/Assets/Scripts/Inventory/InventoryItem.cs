@@ -11,11 +11,11 @@ namespace Q17pD.Frostwatch.Inventory
         [SerializeField] private AudioClip _dropSound;
         public List<ActionVectors> ActionsVectors;
         public List<InventoryAction> Actions = new List<InventoryAction>();
+        protected Drop _drop = new Drop();
         protected virtual void Awake() 
         {
-            Drop drop = new Drop();
-            drop.SoundInit(_dropSound);
-            Actions.Add(drop);
+            _drop.SoundInit(_dropSound);
+            Actions.Add(_drop);
         }
     }
     [Serializable] public class ActionVectors { public List<bool> Vectors = new List<bool>{false, false, false, false}; }
