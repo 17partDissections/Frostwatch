@@ -1,4 +1,4 @@
 "Extenject Dependency Injection" - Mathijs Bakker
 "DOTween (HOTween v2)" - Demigiant
-"Auto Letterbox" - Robinhood76
-
+"Auto Letterbox" - Tom Elliott
+"Sky Engine" - Ultrabolt.dev

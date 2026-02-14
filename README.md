@@ -24,17 +24,18 @@
 <h4>Oh, it's the easiest one. You've got a lot of supplies so don't worry about that. Wait, what do you mean you have only 2 food cans left?
 <p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/READMEAssets/Meat.png" alt="Meat.png" width="600"></p>
 <h3>🎭And one more thing...
-<h4>The only to quit the Game scene - is to shoot yourself IN-GAME(Cuz why not).
+<h4>The only way to quit the Game scene - is to shoot yourself IN-GAME(Cuz why not).
 <p align="center"><img src="https://github.com/17partDissections/Frostwatch/blob/main/Frostwatch/Assets/Textures/UI/Gifs/Suicide.gif" alt="Suicide.png" width="600"></p>
 <br><br><br>
 <h3>Credits
 <br>
-<h4>Plugins (<a href="htassetstore.unity.com">Unity Asset Store</a>)
+<h4>Plugins (<a href="https://assetstore.unity.com/">Unity Asset Store</a>)
 <h5>"Extenject Dependency Injection" - Mathijs Bakker<br>
 "DOTween (HOTween v2)" - Demigiant<br>
-"Auto Letterbox" - Robinhood76<br>
+"Auto Letterbox" - Tom Elliott<br>
+"Sky Engine" - Ultrabolt.dev<br>
 <br>
-<h4>Shaders (<a href="htassetstore.unity.com">Unity Asset Store</a>)
+<h4>Shaders (<a href="https://assetstore.unity.com/">Unity Asset Store</a>)
 <h5>"TOZ Image Effects" - Aubergine<br>
 "Frost Effect" - Steven Craeynest<br>
 <br>
