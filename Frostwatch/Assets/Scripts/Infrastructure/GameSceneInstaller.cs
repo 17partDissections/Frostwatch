@@ -18,6 +18,7 @@ namespace Q17pD.Frostwatch.Infrastructure
             BindCampaignBool();
             BindCursorHandler();
             BindAudioHandler();
+            BindEventBus();
             BindPlayer();
             BindBranches();
         }
@@ -35,6 +36,14 @@ namespace Q17pD.Frostwatch.Infrastructure
             Container
                 .Bind<AudioHandler>()
                 .FromInstance(_audioHandler)
+                .AsSingle()
+                .NonLazy();
+        }
+        private void BindEventBus()
+        {
+            Container
+                .Bind<EventBus>()
+                .FromNew()
                 .AsSingle()
                 .NonLazy();
         }
