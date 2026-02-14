@@ -24,6 +24,7 @@
 	Blog=An official Q17pD's telegram channel for russian audience about his life. It also contains projects news and some shitposts.
 	Repo=Frostwatch is an open-source project. You can watch its code or changes in its Github repository.
 #EventInteractiveObjects
+	Day=Day
 	RadioName=Radio
 	RadioDescription=A loud dust radio. The dial is stuck between frequencies.
 	CampfireName=Campfire
@@ -37,6 +38,7 @@
 	BranchDescription=Can be used to keep campfire burn.
 #Actions
 	Drop=Drop
+	DropForest=Throw
 	DropFire=Drop into fire
 	Shoot=Shoot
 	Suicide=Suicide
