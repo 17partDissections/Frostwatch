@@ -3,6 +3,7 @@ using Q17pD.Frostwatch.Interactive;
 using Q17pD.Frostwatch.Player;
 using System.Collections;
 using System.Collections.Generic;
+using Ultrabolt.SkyEngine;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -13,6 +14,8 @@ namespace Q17pD.Frostwatch
     {
         [SerializeField] private AudioClip _fireIgnite;
         [SerializeField] private PlayerRotateButton _leftButton, _rightButton;
+        [SerializeField] private SkyCore _skyCore;
+        [SerializeField] private Campfire _campfire;
         private bool _isCampaign;
         private UIHighlight _darkeningPanel;
         private AudioHandler _audioHandler;
@@ -33,6 +36,7 @@ namespace Q17pD.Frostwatch
 
         private IEnumerator Start()
         {
+            _campfire.enabled = false;
             BranchHandler branchHandler = GetComponent<BranchHandler>();
             branchHandler.enabled = !_isCampaign; _leftButton.enabled = !_isCampaign; _rightButton.enabled = !_isCampaign;
             yield return new WaitForSeconds(2);
@@ -48,7 +52,10 @@ namespace Q17pD.Frostwatch
             var interactive = GetComponent<GameSceneInstaller>().Interactive;
             foreach (var obj in interactive) obj.enabled = true;
             _cursorHandler.LockCursorToggle(false);
-            if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
+
+            _campfire.enabled = true;
+            _skyCore.Paused = false;
+            //if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
         }
     }
 }
