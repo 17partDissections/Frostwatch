@@ -20,7 +20,7 @@ namespace Q17pD.Frostwatch
             _cursorHandler.LockCursorToggle(true);
             if (_darkeningPanel != null) {  _darkeningPanel.gameObject.SetActive(true); _darkeningPanel.UnHighlightImage(0); _darkeningPanel.HighlightImage(1, _delay); }
             yield return new WaitForSeconds(_delay /2);
-            if (_clip != null) _audioHandler.PlaySFX(_clip, 0.01f);
+            if (_clip != null) _audioHandler.PlaySound(SoundType.SFX, _clip);
             yield return new WaitForSeconds(_delay /2);
             UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneID);
         }

@@ -7,6 +7,7 @@ namespace Q17pD.Frostwatch.Interactive
     public class Radio : InteractiveObject
     {
         [SerializeField] private List<AudioClip> _sounds;
+        private AudioSource _soundSource;
         private bool _on;
 
         public override void OnMouseDown()
@@ -14,7 +15,7 @@ namespace Q17pD.Frostwatch.Interactive
             if(!_player.IsMoving && !_player.IsHoldingItem)
             {
                 if(!_on) { _on = true; StartCoroutine(SoundCoroutine()); }
-                else { _on = false; StopAllCoroutines(); _audioHandler.StopSFX(); }
+                else { _on = false; StopAllCoroutines(); _audioHandler.StopSound(_soundSource); }
             }
         }
         private IEnumerator SoundCoroutine()
@@ -23,7 +24,7 @@ namespace Q17pD.Frostwatch.Interactive
             WaitForSeconds sleep = new WaitForSeconds(sound.length);
             while (true)
             {
-                _audioHandler.PlaySFX(sound, 0);
+                _soundSource = _audioHandler.PlaySound(SoundType.SFX, sound);
                 yield return sleep;
             }
         }

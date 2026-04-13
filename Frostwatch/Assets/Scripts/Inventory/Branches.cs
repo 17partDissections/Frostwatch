@@ -52,7 +52,7 @@ namespace Q17pD.Frostwatch.Inventory
         public void CustomInit(Branches branches, EventBus eventBus) { _branches = branches; _eventBus = eventBus; }
         public override void Act()
         {
-            _audioHandler.PlaySFX(_actSound, 0);
+            _audioHandler.PlaySound(SoundType.SFX, _actSound);
             _branches.RemoveVisualObj();
             _eventBus.BranchThrownIntoForest?.Invoke();
         }
@@ -73,7 +73,7 @@ namespace Q17pD.Frostwatch.Inventory
         public void CustomInit(Branches branches, EventBus eventBus) { _branches = branches; _eventBus = eventBus; }
         public override void Act()
         {
-            _audioHandler.PlaySFX(_actSound, 0);
+            _audioHandler.PlaySound(SoundType.SFX, _actSound);
             _branches.RemoveVisualObj();
             _eventBus.BranchThrownIntoFire?.Invoke();
         }

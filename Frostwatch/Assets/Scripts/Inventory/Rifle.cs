@@ -56,7 +56,7 @@ namespace Q17pD.Frostwatch.Inventory
         {
             _isShooting = true;
 
-            _audioHandler?.PlaySFX(_shootSound, 0);
+            _audioHandler?.PlaySound(SoundType.SFX, _shootSound);
             _player?.PlayerAnimation.ChangeAnimation(_shootAnim);
 
             yield return _shootDelay;
@@ -97,7 +97,7 @@ namespace Q17pD.Frostwatch.Inventory
         public void CustomInit(Drop drop, Back back, Suicide suicide) { _drop = drop; _back = back; _suicide = suicide; }
         public override void Act() 
         {
-            _audioHandler.PlaySFX(_actSound, 0);
+            _audioHandler.PlaySound(SoundType.SFX, _actSound);
             _player.PlayerAnimation.ChangeAnimation(2);
             _drop.IsCustomConditionSatisfied = false;
             _back.IsCustomConditionSatisfied = true; _suicide.IsCustomConditionSatisfied = true;
@@ -117,7 +117,7 @@ namespace Q17pD.Frostwatch.Inventory
             LocalizationKey = "BackButton";
         }
         public void SoundInit(AudioClip actSound) { _actSound = actSound; }
-        public override void Act() { _audioHandler.PlaySFX(_actSound, 0); _player.PlayerItemHandler.DropItem(); }
+        public override void Act() { _audioHandler.PlaySound(SoundType.SFX, _actSound); _player.PlayerItemHandler.DropItem(); }
     }
     public class Suicide : InventoryAction
     {
@@ -132,6 +132,6 @@ namespace Q17pD.Frostwatch.Inventory
             LocalizationKey = "Suicide";
         }
         public void SoundInit(AudioClip actSound) { _actSound = actSound; }
-        public override void Act() { _audioHandler.PlaySFX(_actSound, 0); _player.PlayerItemHandler.DropItem(); }
+        public override void Act() { _audioHandler.PlaySound(SoundType.SFX, _actSound); _player.PlayerItemHandler.DropItem(); }
     }
 }

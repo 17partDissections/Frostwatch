@@ -75,7 +75,7 @@ namespace Q17pD.Frostwatch.Interactive
                         () =>
                         {
                             _isMoving = false;
-                            _audioHandler.PlaySFX(_pickupSound, 0);
+                            _audioHandler.PlaySound(SoundType.SFX, _pickupSound);
                             ObjToMove.transform.position = _originalPos;
                             _player.PlayerItemHandler.AddItem(_index, this);
                             gameObject.SetActive(false);

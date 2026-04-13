@@ -31,6 +31,6 @@ namespace Q17pD.Frostwatch.Inventory
             LocalizationKey = "Drop";
         }
         public void SoundInit(AudioClip actSound) { _actSound = actSound; }
-        public override void Act() { _audioHandler.PlaySFX(_actSound, 0); _player.PlayerItemHandler.DropItem(); }
+        public override void Act() { _audioHandler.PlaySound(SoundType.SFX, _actSound); _player.PlayerItemHandler.DropItem(); }
     }
 }

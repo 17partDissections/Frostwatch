@@ -36,7 +36,7 @@ namespace Q17pD.Frostwatch.Player
         {
             _player.IsMoving = true;
             yield return _cooldownWFS;
-            _audioHandler.PlaySFX(_rotateSound, 0);
+            _audioHandler.PlaySound(SoundType.SFX, _rotateSound);
             while (_player.Brain.IsBlending) yield return null;
             _player.PlayerCanvasHandler.UpdateActions(newIndex);
             _player.CurrentCameraIndex = newIndex;

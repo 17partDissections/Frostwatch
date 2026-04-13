@@ -32,7 +32,7 @@ namespace Q17pD.Frostwatch.Interactive
                 _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);
                 _outline.enabled = true;
                 _cursorHandler.SetCursor("Pointer");
-                _audioHandler.PlaySFX(_enterSound, 0);
+                _audioHandler.PlaySound(SoundType.SFX, _enterSound);
             }
         }
         public virtual void OnMouseExit()

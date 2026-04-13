@@ -42,7 +42,7 @@ namespace Q17pD.Frostwatch
             yield return new WaitForSeconds(2);
             _audioHandler.gameObject.SetActive(true);
             yield return new WaitForSeconds(2);
-            _audioHandler.PlaySFX(_fireIgnite, 0);
+            _audioHandler.PlaySound(SoundType.SFX, _fireIgnite);
             yield return new WaitForSeconds(_fireIgnite.length - (_fireIgnite.length/4));
             _darkeningPanel.UnHighlightImage(_fireIgnite.length / 4);
             yield return new WaitForSeconds(_fireIgnite.length / 4);

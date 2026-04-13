@@ -7,103 +7,72 @@ namespace Q17pD
     public class AudioHandler : MonoBehaviour
     {
         [SerializeField] private AudioMixerGroup _audioMixerGroup;
-        [SerializeField] private AudioSource _music;
-        [SerializeField] private AudioSource _SFX;
-        [SerializeField] private AudioSource _SFXAudioSourcePrefab;
-        private List<AudioSource> _SFXSources = new List<AudioSource>();
-        private int _tempMusicValue;
-        private int _tempSFXValue;
-        private void Start()
-        {
-            _audioMixerGroup.audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
-            _audioMixerGroup.audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
-        }
-        private void OnDestroy() { Save(); }
+        [SerializeField] private AudioSource _audioSourcePrefab;
+        private List<AudioSource> _activeAudioSources = new List<AudioSource>();
+        private List<AudioSource> _availableAudioSources = new List<AudioSource>();
+        private float _tempMusicDB, _tempSFXDB;
 
-        /// <summary>
-        /// keep volume <= 0, if you want to play sound with current audiosource volume.
-        /// </summary>
-        public void PlaySFX(AudioClip clip, float volume)
+        private void Start() { Revert(); }
+        private void Update() { for (int i = _activeAudioSources.Count - 1; i >= 0; i--) if (!_activeAudioSources[i].isPlaying) ReturnSourceToPool(_activeAudioSources[i]); }
+        public AudioSource PlaySound(SoundType soundType, AudioClip clip, bool loop = false)
         {
-            AudioSource SFXSource = GetAvailableSFXSource();
-            SFXSource.clip = clip;
-            if (volume > 0)
-                SFXSource.volume = volume;
-            SFXSource.PlayOneShot(clip);
+            AudioSource source = GetAvailableAudioSource();
+            source.clip = clip; source.loop = loop;
+            if (soundType == SoundType.Music) source.outputAudioMixerGroup = _audioMixerGroup.audioMixer.FindMatchingGroups("Music")[0];
+            else source.outputAudioMixerGroup = _audioMixerGroup.audioMixer.FindMatchingGroups("SFX")[0];
+            source.Play();
+            _activeAudioSources.Add(source);
+            return source;
         }
-        /// <summary>
-        /// keep volume <= 0, if you want to play sound with current audiosource volume.
-        /// </summary>
-        public void PlayMusic(AudioClip clip, float volume)
+        public void StopSound(AudioSource source) { source.Stop(); ReturnSourceToPool(source); }
+        public void StopAllSounds()
         {
-            _music.clip = clip;
-            if(volume > 0)
-                _music.volume = volume;
-            _music.Play();
-        }
-        public void StopMusic()
-        {
-            _music.Stop();
-        }
-        public void StopSFX()
-        {
-            foreach (var source in _SFXSources)
+            for (int i = _activeAudioSources.Count - 1; i >= 0; i--)
             {
-                if(source.isPlaying)
-                    source.Stop();
+                _activeAudioSources[i].Stop();
+                ReturnSourceToPool(_activeAudioSources[i]);
             }
         }
-        private AudioSource GetAvailableSFXSource()
+        private AudioSource GetAvailableAudioSource()
         {
-            foreach (var source in _SFXSources) if (!source.isPlaying) return source;
-            AudioSource newSource = Instantiate(_SFXAudioSourcePrefab, transform);
-
-            newSource.transform.SetParent(transform);
-            newSource.outputAudioMixerGroup = _audioMixerGroup;
-            _SFXSources.Add(newSource);
+            if (_availableAudioSources.Count > 0)
+            {
+                AudioSource source = _availableAudioSources[_availableAudioSources.Count - 1];
+                _availableAudioSources.RemoveAt(_availableAudioSources.Count - 1);
+                return source;
+            }
+            AudioSource newSource = Instantiate(_audioSourcePrefab, transform);
             return newSource;
         }
-        public void OnMasterVolumeValueChanged(float percent)
+        private void ReturnSourceToPool(AudioSource source)
         {
-            _audioMixerGroup.audioMixer.SetFloat("MasterVolume", Mathf.Lerp(-80, 0, percent));
+            source.Stop(); source.clip = null;
+            _activeAudioSources.Remove(source); _availableAudioSources.Add(source);
         }
-        public void OnMusicVolumeValueChanged(float percent)
+        public void SetMusicVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, percent));
+        public void SetSFXVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Lerp(-80, 0, percent));
+        public void Save()
         {
-            _audioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, percent));
+            PlayerPrefs.SetFloat("MusicVolume", _tempMusicDB);
+            PlayerPrefs.SetFloat("SFXVolume", _tempSFXDB);
         }
-        public void OnSFXVolumeValueChanged(float percent)
+        public void Revert()
         {
-            _audioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Lerp(-80, 0, percent));
-
+            _audioMixerGroup.audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume", 0f));
+            _audioMixerGroup.audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume", 0f));
         }
-        public void OnMusicVolumeValueChangedBySlider(UnityEngine.UI.Slider slider)
+        public void SetVolumeFromSlider(SoundType soundType, float value)
         {
-            var percent = slider.value;
-            _audioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, percent));
-            PlayerPrefs.SetFloat("MusicSlider", percent);
+            _tempMusicDB = Mathf.Lerp(-80, 0, value);
+            if (soundType == SoundType.Music) _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
+            else _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
         }
-        public void OnSFXVolumeValueChangedBySlider(UnityEngine.UI.Slider slider)
+        public void SetVolumeFromToggle(SoundType soundType, bool value)
         {
-            var percent = slider.value;
-            _audioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Lerp(-80, 0, percent));
-            PlayerPrefs.SetFloat("SFXSlider", percent);
-
-        }
-        public void TempChangeMusicValue(int value) { _tempMusicValue = value; }
-        public void TempChangeSFXValue(int value) { _tempSFXValue = value; }
-        public void CompletelyChangeValues()
-        {
-            _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicValue);
-            _audioMixerGroup.audioMixer.SetFloat("SFXVolume", _tempSFXValue);
-            Save();
-        }
-        private void Save()
-        {
-            _audioMixerGroup.audioMixer.GetFloat("MusicVolume", out float mValue);
-            PlayerPrefs.SetFloat("MusicVolume", mValue);
-            _audioMixerGroup.audioMixer.GetFloat("SFXVolume", out float sfxValue);
-            PlayerPrefs.SetFloat("SFXVolume", sfxValue);
+            _tempMusicDB = value == true ? 0 : -80;
+            if (soundType == SoundType.Music) _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
+            else _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
         }
     }
+    public enum SoundType { Music, SFX }
 }
-
