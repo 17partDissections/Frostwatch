@@ -14,7 +14,8 @@ namespace Q17pD.Frostwatch.Player
         private int _currentItemIndex = -1;
         private Player _player;
         private AudioHandler _audioHandler;
-        [Inject]private void Construct(AudioHandler audioHandler, PickupableObject branches)
+        private EventBus _eventBus;
+        [Inject]private void Construct(AudioHandler audioHandler, PickupableObject branches, EventBus eventBus)
         {
             _branches = branches;
             _player = GetComponent<Player>();

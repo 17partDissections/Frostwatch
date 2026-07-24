@@ -18,7 +18,6 @@ namespace Q17pD.Frostwatch.Player
         private List<InventoryAction> _currentActions = new List<InventoryAction>();
         private List<InventoryAction> _buttonActions = new List<InventoryAction> { null, null };
         private List<ActionVectors> _currentActionsVectors = new List<ActionVectors>();
-        private bool _busy;
 
         private void Start()
         {
@@ -28,7 +27,6 @@ namespace Q17pD.Frostwatch.Player
         private void UpdateInfoLocales() { _name.UpdateLocale(); _description.UpdateLocale(); }
         public void SetObjectInfo(string name, string description)
         {
-            _busy = true;
             _name.localizationKey = name;
             _description.localizationKey = description;
             _itemInfoBg.HighlightImage(0.7f, _hightlightTime);
@@ -38,7 +36,6 @@ namespace Q17pD.Frostwatch.Player
         }
         public void ClearInfo()
         {
-            _busy = false;
             _itemInfoBg.UnHighlightImage(_hightlightTime);
             _nameHighlight.UnHighlightTMP(_hightlightTime);
             _descriptionHighlight.UnHighlightTMP(_hightlightTime);
