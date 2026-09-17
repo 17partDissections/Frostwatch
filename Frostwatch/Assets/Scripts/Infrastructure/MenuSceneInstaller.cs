@@ -14,7 +14,6 @@ namespace Q17pD.Frostwatch.Infrastructure
             BindCursorHandler();
             BindAudioHandler();
             BindPixelation();
-            BindForcedCameraRatio();
         }
         private void BindCursorHandler()
         {
@@ -37,14 +36,6 @@ namespace Q17pD.Frostwatch.Infrastructure
             Container
                 .Bind<PP_Pixelated>()
                 .FromInstance(_pixelated)
-                .AsSingle()
-                .NonLazy();
-        }
-        private void BindForcedCameraRatio()
-        {
-            Container
-                .Bind<ForcedCameraRatio>()
-                .FromInstance(GetComponent<ForcedCameraRatio>())
                 .AsSingle()
                 .NonLazy();
         }

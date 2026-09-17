@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Q17pD.Frostwatch.Player
+namespace Q17pD.Frostwatch
 {
     public class PlayerPrefsInit : MonoBehaviour
     {
-        //just an init for playerprefs vars if player ran a game in the first time
+        //an init for playerprefs vars if player ran a game in the first time
         //and also list of all playerprefs vars in Frostwatch namespace
         private void Start()
         {
@@ -15,7 +15,9 @@ namespace Q17pD.Frostwatch.Player
                 PlayerPrefs.SetInt("SFXVolume", 1);
                 PlayerPrefs.SetInt("SFXToggleValue", 1);
                 PlayerPrefs.SetInt("MusicToggleValue", 1);
+                PlayerPrefs.SetInt("ForcedRatio", 1); Screen.SetResolution(800, 600, FullScreenMode.FullScreenWindow);
                 PlayerPrefs.SetInt("IsEndlessModeAvailable", 0);
+                PlayerPrefs.SetInt("Inited", 1);
             }
         }
     }

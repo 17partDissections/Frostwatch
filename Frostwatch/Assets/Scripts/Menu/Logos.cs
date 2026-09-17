@@ -14,12 +14,12 @@ namespace Q17pD.Frostwatch.Menu
         [SerializeField] private Image _logosBg;
         [SerializeField] private Image _logosDarkeningPanel;
         [SerializeField] private float _darkeningTime = 1f;
-        [SerializeField] private GameObject _mainObj;
+        [SerializeField] private List<GameObject> _disableList;
         [SerializeField] private UIHighlight _mainDarkeningPanel;
 
         private IEnumerator Start()
         {
-            if(_skip) { _mainObj.SetActive(true); _logosDarkeningPanel.enabled = false; _logosBg.enabled = false; StopAllCoroutines(); }
+            if(_skip) { foreach (GameObject obj in _disableList) obj.SetActive(false); _logosDarkeningPanel.enabled = false; _logosBg.enabled = false; StopAllCoroutines(); }
             _cursorHandler.LockCursorToggle(true);
             yield return new WaitForSeconds(_darkeningTime);
             foreach(Logo logo in _logos)
@@ -34,7 +34,7 @@ namespace Q17pD.Frostwatch.Menu
                 
             }
             _mainDarkeningPanel.gameObject.SetActive(true);
-            _mainObj.SetActive(true);
+            foreach (GameObject obj in _disableList) obj.SetActive(false);
             _logosDarkeningPanel.enabled = false;
             _logosBg.enabled = false;
             yield return new WaitForSeconds(_darkeningTime);
