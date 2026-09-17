@@ -27,12 +27,7 @@ namespace Q17pD.Frostwatch.Inventory
         private Player.Player _player;
         private AudioHandler _audioHandler;
         private EventBus _eventBus;
-
-        private float _shootDelay = 1f;
-        private int _shootAnim = 2;
-        private int _reloadAnim = 4;
-
-        private int _bulletsLeft = 5;
+        private int _shootDelay = 2, _shootAnim = 3, _reloadAnim = 4, _bulletsLeft = 5; //lol
         private WaitForSeconds _sleep;
         private bool _isShooting;
         private Coroutine _currentCoroutine;
@@ -43,7 +38,6 @@ namespace Q17pD.Frostwatch.Inventory
             _audioHandler = handler;
             LocalizationKey = "Shoot";
 
-            _sleep = new WaitForSeconds(_shootDelay);
         }
         public void SoundInit(AudioClip shootSound, AudioClip reloadSound)
         {
@@ -58,10 +52,8 @@ namespace Q17pD.Frostwatch.Inventory
 
             _audioHandler?.PlaySound(SoundType.SFX, _shootSound);
             _player?.PlayerAnimation.ChangeAnimation(_shootAnim);
-
-            yield return _shootDelay;
-
-            _eventBus?.Shot.Invoke(_player.CurrentCameraIndex);
+            yield return new WaitForSeconds(_shootDelay);
+            _eventBus.Shot?.Invoke(_player.CurrentCameraIndex);
             DecreaseBullets();
 
             _isShooting = false;
@@ -72,7 +64,7 @@ namespace Q17pD.Frostwatch.Inventory
             _bulletsLeft--;
 
             if (_bulletsLeft <= 0) Reload();
-            else _player?.PlayerAnimation.ChangeAnimation(1);
+            else _player?.PlayerAnimation.ChangeAnimation(2);
         } 
 
         private void Reload()
