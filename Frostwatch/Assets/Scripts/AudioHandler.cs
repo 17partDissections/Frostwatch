@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -12,24 +13,31 @@ namespace Q17pD
         private List<AudioSource> _availableAudioSources = new List<AudioSource>();
         private float _tempMusicDB, _tempSFXDB;
 
-        private void Start() { Revert(); }
+        private void Start() => Revert();
         private void Update() { for (int i = _activeAudioSources.Count - 1; i >= 0; i--) if (!_activeAudioSources[i].isPlaying) ReturnSourceToPool(_activeAudioSources[i]); }
-        public AudioSource PlaySound(SoundType soundType, AudioClip clip, bool loop = false)
+        public AudioSource PlaySound(SoundType soundType, AudioClip clip, bool loop = false, bool fade = false, float fadeTime = 5)
         {
             AudioSource source = GetAvailableAudioSource();
             source.clip = clip; source.loop = loop;
             if (soundType == SoundType.Music) source.outputAudioMixerGroup = _audioMixerGroup.audioMixer.FindMatchingGroups("Music")[0];
             else source.outputAudioMixerGroup = _audioMixerGroup.audioMixer.FindMatchingGroups("SFX")[0];
-            source.Play();
             _activeAudioSources.Add(source);
+            source.Play();
+            if (fade) { source.DOKill(); source.volume = 0; source.DOFade(1, fadeTime); }
             return source;
+
         }
-        public void StopSound(AudioSource source) { source.Stop(); ReturnSourceToPool(source); }
-        public void StopAllSounds()
+        public void StopSound(AudioSource source, bool fade = false, float fadeTime = 5)
+        {
+            if (fade) { source.DOKill(); source.DOFade(0, fadeTime).OnComplete(() => { source.Stop(); ReturnSourceToPool(source); }); }
+            else { source.Stop(); ReturnSourceToPool(source); }
+        }
+        public void StopAllSounds(bool fade = false, float fadeTime = 5)
         {
             for (int i = _activeAudioSources.Count - 1; i >= 0; i--)
             {
-                _activeAudioSources[i].Stop();
+                if (fade) { _activeAudioSources[i].DOKill(); _activeAudioSources[i].DOFade(0, fadeTime).OnComplete(() => _activeAudioSources[i].Stop()); }
+                else _activeAudioSources[i].Stop();
                 ReturnSourceToPool(_activeAudioSources[i]);
             }
         }
@@ -46,7 +54,7 @@ namespace Q17pD
         }
         private void ReturnSourceToPool(AudioSource source)
         {
-            source.Stop(); source.clip = null;
+            source.clip = null;
             _activeAudioSources.Remove(source); _availableAudioSources.Add(source);
         }
         public void SetMusicVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, percent));
