@@ -13,8 +13,10 @@ namespace Q17pD.Frostwatch
                 PlayerPrefs.SetInt("LangIndex", 0);
                 PlayerPrefs.SetInt("MusicVolume", 1);
                 PlayerPrefs.SetInt("SFXVolume", 1);
-                PlayerPrefs.SetInt("SFXToggleValue", 1);
-                PlayerPrefs.SetInt("MusicToggleValue", 1);
+                //PlayerPrefs.SetInt("MusicToggleValue", 1);
+                //PlayerPrefs.SetInt("SFXToggleValue", 1);
+                PlayerPrefs.SetFloat("MusicSliderValue", 1);
+                PlayerPrefs.SetFloat("SFXSliderValue", 1);
                 PlayerPrefs.SetInt("ForcedRatio", 1); Screen.SetResolution(800, 600, FullScreenMode.FullScreenWindow);
                 PlayerPrefs.SetInt("IsEndlessModeAvailable", 0);
                 PlayerPrefs.SetInt("Inited", 1);

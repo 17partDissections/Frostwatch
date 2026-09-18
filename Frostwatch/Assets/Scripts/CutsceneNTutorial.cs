@@ -15,7 +15,7 @@ namespace Q17pD.Frostwatch
         [SerializeField] private AudioClip _fireIgnite;
         [SerializeField] private PlayerRotateButton _leftButton, _rightButton;
         [SerializeField] private SkyCore _skyCore;
-        [SerializeField] private Campfire _campfire;
+        [SerializeField] private Outline _campfireOutline;
         private bool _isCampaign;
         private UIHighlight _darkeningPanel;
         private AudioHandler _audioHandler;
@@ -36,9 +36,9 @@ namespace Q17pD.Frostwatch
 
         private IEnumerator Start()
         {
-            _campfire.enabled = false;
+            _campfireOutline.enabled = false;
             BranchHandler branchHandler = GetComponent<BranchHandler>();
-            branchHandler.enabled = !_isCampaign; _leftButton.enabled = !_isCampaign; _rightButton.enabled = !_isCampaign;
+            branchHandler.enabled = !_isCampaign; _leftButton.AutoRotate = false; _rightButton.AutoRotate = false;
             yield return new WaitForSeconds(2);
             _audioHandler.gameObject.SetActive(true);
             yield return new WaitForSeconds(2);
@@ -48,14 +48,14 @@ namespace Q17pD.Frostwatch
             yield return new WaitForSeconds(_fireIgnite.length / 4);
             _darkeningPanel.gameObject.SetActive(false);
             _rightButton.Rotate();
+            _leftButton.AutoRotate = !_isCampaign; _rightButton.AutoRotate = !_isCampaign;
             yield return new WaitForSeconds(0.5f);
             var interactive = GetComponent<GameSceneInstaller>().Interactive;
             foreach (var obj in interactive) obj.enabled = true;
             _cursorHandler.LockCursorToggle(false);
 
-            _campfire.enabled = true;
             _skyCore.Paused = false;
-            //if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
+            if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
         }
     }
 }

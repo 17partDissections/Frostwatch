@@ -57,8 +57,9 @@ namespace Q17pD
             source.clip = null;
             _activeAudioSources.Remove(source); _availableAudioSources.Add(source);
         }
-        public void SetMusicVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, percent));
-        public void SetSFXVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Lerp(-80, 0, percent));
+        private static float LinearToDecibel(float linear) => linear <= 0.0001f ? -80f : Mathf.Log10(linear) * 20f;
+        public void SetMusicVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("MusicVolume", LinearToDecibel(percent));
+        public void SetSFXVolume(float percent) => _audioMixerGroup.audioMixer.SetFloat("SFXVolume", LinearToDecibel(percent));
         public void Save()
         {
             PlayerPrefs.SetFloat("MusicVolume", _tempMusicDB);
@@ -71,15 +72,15 @@ namespace Q17pD
         }
         public void SetVolumeFromSlider(SoundType soundType, float value)
         {
-            _tempMusicDB = Mathf.Lerp(-80, 0, value);
+            _tempMusicDB = LinearToDecibel(value);
             if (soundType == SoundType.Music) _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
-            else _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
+            else _audioMixerGroup.audioMixer.SetFloat("SFXVolume", _tempMusicDB);
         }
         public void SetVolumeFromToggle(SoundType soundType, bool value)
         {
             _tempMusicDB = value == true ? 0 : -80;
             if (soundType == SoundType.Music) _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
-            else _audioMixerGroup.audioMixer.SetFloat("MusicVolume", _tempMusicDB);
+            else _audioMixerGroup.audioMixer.SetFloat("SFXVolume", _tempMusicDB);
         }
     }
     public enum SoundType { Music, SFX }

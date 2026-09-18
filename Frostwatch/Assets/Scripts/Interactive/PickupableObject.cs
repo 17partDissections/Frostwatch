@@ -89,7 +89,13 @@ namespace Q17pD.Frostwatch.Interactive
             foreach (GameObject obj in _visualObjs) if(obj.activeSelf) a++;
             return a;
         }
-        public void AddVisualObj() { _visualObjs.FirstOrDefault(x=>!x.activeSelf).SetActive(true); CheckMultipleCollider(); }
+        public void AddVisualObj()
+        {
+            if (_visualObjs == null || _visualObjs.Count == 0) return;
+            GameObject obj = _visualObjs.FirstOrDefault(x => !x.activeSelf);
+            if (obj != null) obj.SetActive(true);
+            CheckMultipleCollider();
+        }
         public void ClearVisualObjs() { foreach (GameObject obj in _visualObjs) obj.SetActive(false); }
         public void CheckMultipleCollider()
         {

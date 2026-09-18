@@ -72,10 +72,13 @@ MonoBehaviour:
   _localeNameKey: WalkieTalkieName
   _localeDescriptionKey: WalkieTalkieDescription
   _enterSound: {fileID: 8300000, guid: b31aa79123783d7e09b3dfa77a72650b, type: 3}
+  _ignorePlayerHoldingItem: 0
   _index: 0
   ObjToMove: {fileID: 3713518268725579283}
   _moveFinalTransform: {fileID: 9093277319832857157}
   _pickupSound: {fileID: 8300000, guid: 196d1e05452d5c0db8b49e7da12a1774, type: 3}
+  IsMultiple: 0
+  _visualObjs: []
 --- !u!1 &3713518268725579283
 GameObject:
   m_ObjectHideFlags: 0

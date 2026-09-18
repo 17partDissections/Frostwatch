@@ -1,5 +1,6 @@
 using DFTGames.Localization;
 using Q17pD.Frostwatch.Inventory;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Q17pD.Frostwatch.Player
     public class PlayerCanvasHandler : MonoBehaviour
     {
         public Image DarkeningPanel;
+        [SerializeField] private CursorHandler _cursorHandler;
         [SerializeField] private UIHighlight _itemInfoBg;
         [SerializeField] private LocalizeTMPro _name, _description;
         [SerializeField] private float _hightlightTime = 0.25f;
@@ -42,22 +44,55 @@ namespace Q17pD.Frostwatch.Player
         }
         public void UpdateActions(int CurrentCameraIndex, List<InventoryAction> actions = null, List<ActionVectors> actionsVectors = null)
         {
+            if (actions != null && actionsVectors != null)
+            {
+                _currentActions = new List<InventoryAction>(actions);
+                _currentActionsVectors = new List<ActionVectors>(actionsVectors);
+            }
             HideActions();
-            if (actions != null && actionsVectors != null) { _currentActions = actions; _currentActionsVectors = actionsVectors; }
+            if (_currentActions.Count == 0 || _currentActionsVectors.Count == 0) return;
+            _buttonActions = new List<InventoryAction> { null, null };
             for (int i = 0; i < _currentActions.Count; i++)
             {
                 if (_currentActionsVectors[i].Vectors[CurrentCameraIndex] && _currentActions[i].IsCustomConditionSatisfied)
                 {
-                    Button button = _buttons.FirstOrDefault(x => !x.gameObject.activeSelf);
-                    _buttonActions[_buttons.FindIndex(x => !x.gameObject.activeSelf)] = _currentActions[i];
-                    button.gameObject.SetActive(true);
+                    int buttonIndex = _buttons.FindIndex(x => !x.gameObject.activeSelf);
+                    if (buttonIndex == -1) continue;
+                    Button button = _buttons[buttonIndex];
+                    _buttonActions[buttonIndex] = _currentActions[i];
                     LocalizeTMPro l = button.GetComponentInChildren<LocalizeTMPro>();
-                    l.localizationKey = _currentActions[i].LocalizationKey;
-                    l.UpdateLocale();
+                    if (l != null) { l.localizationKey = _currentActions[i].LocalizationKey; l.UpdateLocale(); }
+                    UIHighlight buttonHighlight = button.GetComponent<UIHighlight>();
+                    UIHighlight textHighlight = l.GetComponent<UIHighlight>();
+                    button.gameObject.SetActive(true);
+                    buttonHighlight.UnHighlightImageFixedValues();
+                    textHighlight.UnHighlightTMPFixedValues();
                 }
             }
         }
-        public void HideActions() { foreach (Button buttツ in _buttons) buttツ.gameObject.SetActive(false); }
-        public void ActionButtonDown(int index) { _buttonActions[index].Act(); }
+        public void HideActions()
+        {
+            _cursorHandler.SetCursor("Default");
+            for (int i = 0; i < _buttons.Count; i++)
+            {
+                Button buttツ = _buttons[i]; //i saved it ツ
+                UIHighlight buttonHighlight = buttツ.GetComponent<UIHighlight>();
+                if (buttonHighlight != null) buttonHighlight.UnHighlightImage(0.2f);
+                UIHighlight textHighlight = buttツ.GetComponentInChildren<UIHighlight>();
+                if (textHighlight != null) textHighlight.UnHighlightTMP(0.2f);
+                LocalizeTMPro l = buttツ.GetComponentInChildren<LocalizeTMPro>();
+                if (l != null) { l.localizationKey = ""; l.UpdateLocale(); }
+                buttツ.gameObject.SetActive(false);
+                if (i < _buttonActions.Count) _buttonActions[i] = null;
+            }
+        }
+        public void ClearActions()
+        {
+            HideActions();
+            _currentActions.Clear();
+            _currentActionsVectors.Clear();
+            _buttonActions = new List<InventoryAction> { null, null };
+        }
+        public void ActionButtonDown(int index) { if (_buttonActions[index] != null) { _buttonActions[index].Act(); _buttonActions[index] = null; } }
     }
 }

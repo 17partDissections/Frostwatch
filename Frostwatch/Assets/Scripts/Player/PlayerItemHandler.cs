@@ -15,7 +15,8 @@ namespace Q17pD.Frostwatch.Player
         private Player _player;
         private AudioHandler _audioHandler;
         private EventBus _eventBus;
-        [Inject]private void Construct(AudioHandler audioHandler, PickupableObject branches, EventBus eventBus)
+
+        [Inject] private void Construct(AudioHandler audioHandler, PickupableObject branches, EventBus eventBus)
         {
             _branches = branches;
             _player = GetComponent<Player>();
@@ -23,11 +24,11 @@ namespace Q17pD.Frostwatch.Player
             for (int i = 0; i < _items.Count; i++) _pickupableObjs.Add(null);
         }
         public void AddItem(int index, PickupableObject invoker)
-        {            
+        {
             _currentItemIndex = index;
             if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches branches))
             {
-                if(invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { branches.AddVisualObj(); } invoker.ClearVisualObjs(); }
+                if (invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { branches.AddVisualObj(); } invoker.ClearVisualObjs(); }
                 else branches.AddVisualObj();
             }
             else _pickupableObjs[_currentItemIndex] = invoker;
@@ -37,28 +38,37 @@ namespace Q17pD.Frostwatch.Player
         }
         public void ContinueAddingItem()
         {
-            _items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem);
-            foreach (InventoryAction action in inventoryItem.Actions) { action.Init(_player, _audioHandler); }
-            _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
+            if (_currentItemIndex == -1) return;
+            if (_items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem))
+            {
+                foreach (InventoryAction action in inventoryItem.Actions) { action.Init(_player, _audioHandler); }
+                _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
+            }
         }
-        public void DropItem() 
+
+        public void DropItem()
         {
-            if(_pickupableObjs[_currentItemIndex] == null) _pickupableObjs[_currentItemIndex] = _branches;
+            if (_currentItemIndex == -1) return;
+            if (_pickupableObjs[_currentItemIndex] == null) _pickupableObjs[_currentItemIndex] = _branches;
             _pickupableObjs[_currentItemIndex].gameObject.SetActive(true);
-            if(_items[_currentItemIndex].TryGetComponent<Branches>(out Branches MII)) 
+            if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches MII))
             {
                 int a = 0;
                 int pickupableVisualObjs = _pickupableObjs[_currentItemIndex].HasObjs();
                 int MIIObjs = MII.HasObjs();
                 if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5)) a = (pickupableVisualObjs + MIIObjs) - 5;
                 for (int i = 0; i < MIIObjs - a; i++) { _pickupableObjs[_currentItemIndex].AddVisualObj(); MII.RemoveVisualObj(); }
-                if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5)) return;
+                if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5))
+                {
+                    _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex);
+                    return;
+                }
             }
-            
             _items[_currentItemIndex].SetActive(false);
+            _pickupableObjs[_currentItemIndex] = null;
             _currentItemIndex = -1;
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
-            _player.PlayerCanvasHandler.HideActions();
+            _player.PlayerCanvasHandler.ClearActions();
             _player.IsHoldingItem = false;
         }
         public int GetItemAmount() { return _items.Count; }

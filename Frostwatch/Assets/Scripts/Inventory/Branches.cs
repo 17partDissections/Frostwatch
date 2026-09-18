@@ -12,30 +12,33 @@ namespace Q17pD.Frostwatch.Inventory
         public int HasObjs()
         {
             int a = 0;
-            foreach (GameObject obj in _visualObjs) if(obj.activeSelf) a++;
+            foreach (GameObject obj in _visualObjs) if (obj.activeSelf) a++;
             return a;
         }
-        public void AddVisualObj() { _visualObjs.FirstOrDefault(x=>!x.activeSelf).SetActive(true); }
-        public void RemoveVisualObj() 
-        { 
-            _visualObjs.LastOrDefault(x=>x.activeSelf).SetActive(false);
-            if (!_visualObjs.Any(x => x.activeSelf)) _player.EventBus.OutOfBranches?.Invoke(-1);
+        public void AddVisualObj() { _visualObjs.FirstOrDefault(x => !x.activeSelf).SetActive(true); }
+        public void RemoveVisualObj()
+        {
+            _visualObjs.LastOrDefault(x => x.activeSelf).SetActive(false);
+            if (!_visualObjs.Any(x => x.activeSelf))
+            {
+                _player.EventBus.OutOfBranches?.Invoke(-1);
+                _player.PlayerItemHandler.DropItem();
+            }
+            else _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex);
         }
-        public bool CanAddMoreVisualObj() { return _visualObjs.Any(x => !x.activeSelf); }
-
         protected override void Awake()
         {
             base.Awake();
             DropIntoForest dropIntoForest = new DropIntoForest();
             dropIntoForest.SoundInit(_dropIntoForestSound);
             dropIntoForest.CustomInit(this, _player.EventBus);
-
             DropIntoFire dropIntoFire = new DropIntoFire();
             dropIntoFire.SoundInit(_dropIntoFireSound);
             dropIntoFire.CustomInit(this, _player.EventBus);
             Actions.AddRange(new List<InventoryAction> { dropIntoForest, dropIntoFire });
         }
     }
+
     public class DropIntoForest : InventoryAction
     {
         private AudioClip _actSound;
@@ -53,10 +56,11 @@ namespace Q17pD.Frostwatch.Inventory
         public override void Act()
         {
             _audioHandler.PlaySound(SoundType.SFX, _actSound);
-            _branches.RemoveVisualObj();
             _eventBus.BranchThrownIntoForest?.Invoke();
+            _branches.RemoveVisualObj();
         }
     }
+
     public class DropIntoFire : InventoryAction
     {
         private AudioClip _actSound;
@@ -74,8 +78,8 @@ namespace Q17pD.Frostwatch.Inventory
         public override void Act()
         {
             _audioHandler.PlaySound(SoundType.SFX, _actSound);
-            _branches.RemoveVisualObj();
             _eventBus.BranchThrownIntoFire?.Invoke();
+            _branches.RemoveVisualObj();
         }
     }
 }

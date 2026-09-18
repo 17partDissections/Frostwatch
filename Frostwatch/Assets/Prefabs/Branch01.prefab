@@ -52,7 +52,7 @@ MonoBehaviour:
   _localeDescriptionKey: BranchDescription
   _enterSound: {fileID: 8300000, guid: b02ea2377d0fbf731af476e803284e17, type: 3}
   _ignorePlayerHoldingItem: 1
-  _index: 6
+  _index: 7
   ObjToMove: {fileID: 5545881280946824802}
   _moveFinalTransform: {fileID: 2784939780069278709}
   _pickupSound: {fileID: 8300000, guid: 8cc2439e8419152a4a20acf97250b7db, type: 3}
