@@ -8463,7 +8463,7 @@ GameObject:
   - component: {fileID: 654936958}
   - component: {fileID: 654936957}
   - component: {fileID: 654936956}
-  - component: {fileID: 654936955}
+  - component: {fileID: 654936960}
   m_Layer: 5
   m_Name: Button_EndlessMode
   m_TagString: Untagged
@@ -8491,21 +8491,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000050862625, y: 0}
   m_SizeDelta: {x: 350, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &654936955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654936953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e86738e23e1a998bdf164bf1fe4b02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneID: 1
-  _delay: 0
-  _darkeningPanel: {fileID: 0}
 --- !u!114 &654936956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8687,8 +8672,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 654936955}
-        m_TargetAssemblyTypeName: Q17pD.Frostwatch.SceneManager, Assembly-CSharp
+      - m_Target: {fileID: 654936960}
+        m_TargetAssemblyTypeName: Q17pD.Frostwatch.StartGame, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -8737,6 +8722,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654936953}
   m_CullTransparentMesh: 1
+--- !u!114 &654936960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654936953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881a14715182608408a66e077e4bb301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mode: 1
+  _darkeningPanel: {fileID: 714511942}
+  _menuMusic: {fileID: 0}
+  _monster: {fileID: 0}
 --- !u!4 &659608325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4328342000357566, guid: 2514ac27e3c642e47860e174d20e3aeb, type: 3}
@@ -28472,7 +28473,7 @@ GameObject:
   - component: {fileID: 1420458581}
   - component: {fileID: 1420458580}
   - component: {fileID: 1420458579}
-  - component: {fileID: 1420458578}
+  - component: {fileID: 1420458583}
   m_Layer: 5
   m_Name: Button_Campaign
   m_TagString: Untagged
@@ -28500,21 +28501,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1420458578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420458576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e86738e23e1a998bdf164bf1fe4b02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneID: 1
-  _delay: 3
-  _darkeningPanel: {fileID: 714511942}
 --- !u!114 &1420458579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28696,8 +28682,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1420458578}
-        m_TargetAssemblyTypeName: Q17pD.Frostwatch.SceneManager, Assembly-CSharp
+      - m_Target: {fileID: 1420458583}
+        m_TargetAssemblyTypeName: Q17pD.Frostwatch.StartGame, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -28746,6 +28732,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420458576}
   m_CullTransparentMesh: 1
+--- !u!114 &1420458583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420458576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881a14715182608408a66e077e4bb301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mode: 0
+  _darkeningPanel: {fileID: 714511942}
+  _menuMusic: {fileID: 8300000, guid: 877c994875e8ee24cb9714f74151063e, type: 3}
+  _monster: {fileID: 0}
 --- !u!1 &1432127042
 GameObject:
   m_ObjectHideFlags: 0
@@ -31285,13 +31287,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3994916119723971885, guid: 131b16f8f3313d4a08e0f8d6c98d7b65, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994916119723971885, guid: 131b16f8f3313d4a08e0f8d6c98d7b65, type: 3}
       propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3994916119723971885, guid: 131b16f8f3313d4a08e0f8d6c98d7b65, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 877c994875e8ee24cb9714f74151063e, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7155379268028802309, guid: 131b16f8f3313d4a08e0f8d6c98d7b65, type: 3}
       propertyPath: m_Name
       value: AudioHandler
