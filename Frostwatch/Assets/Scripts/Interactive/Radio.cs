@@ -12,7 +12,7 @@ namespace Q17pD.Frostwatch.Interactive
 
         public override void OnMouseDown()
         {
-            if(!_player.IsMoving && !_player.IsHoldingItem)
+            if(!_player.IsMoving/* && !_player.IsHoldingItem*/)
             {
                 if(!_on) { _on = true; StartCoroutine(SoundCoroutine()); }
                 else { _on = false; StopAllCoroutines(); _audioHandler.StopSound(_soundSource); }

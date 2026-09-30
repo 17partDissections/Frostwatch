@@ -5111,30 +5111,37 @@ MonoBehaviour:
   _localeNameKey: CampfireName
   _localeDescriptionKey: CampfireDescription
   _enterSound: {fileID: 8300000, guid: bf20de5e77674c179a3a26d47b96290e, type: 3}
-  _ignorePlayerHoldingItem: 0
+  _ignorePlayerHoldingItem: 1
   _fireObj: {fileID: 551463098825511507}
   _defaultSleep: 60
   _states:
   - ExtinguishDivider: 67
     VisualFireScale: 0.075
+    FrostAmount: 0
     InvokeMonster: 0
   - ExtinguishDivider: 4
     VisualFireScale: 0.1
+    FrostAmount: 0
     InvokeMonster: 0
   - ExtinguishDivider: 3
     VisualFireScale: 0.15
+    FrostAmount: 0
     InvokeMonster: 0
   - ExtinguishDivider: 2
     VisualFireScale: 0.25
+    FrostAmount: 0
     InvokeMonster: 0
   - ExtinguishDivider: 1.5
     VisualFireScale: 0.35
+    FrostAmount: 0
     InvokeMonster: 0
   - ExtinguishDivider: 1.25
     VisualFireScale: 0.45
+    FrostAmount: 0
     InvokeMonster: 1
   - ExtinguishDivider: 1
     VisualFireScale: 0.5
+    FrostAmount: 0
     InvokeMonster: 1
   _currentState: 3
 --- !u!1 &8954777469119703559

@@ -48649,6 +48649,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5520235881738782854, guid: ca15369d60b7f7f4b850e0b0738da3f4, type: 3}
+      propertyPath: _ignorePlayerHoldingItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520235881738782854, guid: ca15369d60b7f7f4b850e0b0738da3f4, type: 3}
       propertyPath: _states.Array.data[0].FrostAmount
       value: 0.3
       objectReference: {fileID: 0}

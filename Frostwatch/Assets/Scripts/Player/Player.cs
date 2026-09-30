@@ -11,6 +11,7 @@ namespace Q17pD.Frostwatch.Player
         [HideInInspector] public CinemachineBrain Brain;
         public List<CinemachineVirtualCamera> Cameras;
         [HideInInspector] public int CurrentCameraIndex;
+        [HideInInspector] public int CurrentHeldItemIndex = -1;
         [HideInInspector] public bool IsMoving;
         [HideInInspector] public bool IsHoldingItem;
         [HideInInspector] public PlayerRotation PlayerRotation;

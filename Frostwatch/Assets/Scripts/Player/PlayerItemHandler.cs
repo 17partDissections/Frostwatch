@@ -14,7 +14,6 @@ namespace Q17pD.Frostwatch.Player
         private int _currentItemIndex = -1;
         private Player _player;
         private AudioHandler _audioHandler;
-        private EventBus _eventBus;
 
         [Inject] private void Construct(AudioHandler audioHandler, PickupableObject branches, EventBus eventBus)
         {
@@ -23,10 +22,10 @@ namespace Q17pD.Frostwatch.Player
             _audioHandler = audioHandler;
             for (int i = 0; i < _items.Count; i++) _pickupableObjs.Add(null);
         }
-
         public void AddItem(int index, PickupableObject invoker)
         {
             _currentItemIndex = index;
+            _player.CurrentHeldItemIndex = index;
             if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches branches))
             {
                 if (invoker.IsMultiple) { for (int i = 0; i < invoker.HasObjs(); i++) { branches.AddVisualObj(); } invoker.ClearVisualObjs(); }
@@ -37,7 +36,6 @@ namespace Q17pD.Frostwatch.Player
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
             _player.IsHoldingItem = true;
         }
-
         public void ContinueAddingItem()
         {
             if (_currentItemIndex == -1) return;
@@ -47,13 +45,11 @@ namespace Q17pD.Frostwatch.Player
                 _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
             }
         }
-
         public void DropItem()
         {
             if (_currentItemIndex == -1) return;
             if (_pickupableObjs[_currentItemIndex] == null) _pickupableObjs[_currentItemIndex] = _branches;
             _pickupableObjs[_currentItemIndex].gameObject.SetActive(true);
-
             if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches MII))
             {
                 int a = 0;
@@ -61,7 +57,6 @@ namespace Q17pD.Frostwatch.Player
                 int MIIObjs = MII.HasObjs();
                 if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5)) a = (pickupableVisualObjs + MIIObjs) - 5;
                 for (int i = 0; i < MIIObjs - a; i++) { _pickupableObjs[_currentItemIndex].AddVisualObj(); MII.RemoveVisualObj(); }
-
                 if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5))
                 {
                     if (_items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem))
@@ -69,15 +64,14 @@ namespace Q17pD.Frostwatch.Player
                     return;
                 }
             }
-
             _items[_currentItemIndex].SetActive(false);
             _pickupableObjs[_currentItemIndex] = null;
             _currentItemIndex = -1;
+            _player.CurrentHeldItemIndex = -1;
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
             _player.PlayerCanvasHandler.ClearActions();
             _player.IsHoldingItem = false;
         }
-
         public int GetItemAmount() { return _items.Count; }
     }
 }

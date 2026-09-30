@@ -27,6 +27,11 @@ namespace Q17pD.Frostwatch.Interactive
         }
         public virtual void OnMouseEnter()
         {
+            if (_player.IsHoldingItem && !_ignorePlayerHoldingItem)
+            {
+                _cursorHandler.SetCursor("Forbidden");
+                return;
+            }
             if (!_player.IsMoving && (_ignorePlayerHoldingItem || !_player.IsHoldingItem))
             {
                 _player.PlayerCanvasHandler.SetObjectInfo(_localeNameKey, _localeDescriptionKey);

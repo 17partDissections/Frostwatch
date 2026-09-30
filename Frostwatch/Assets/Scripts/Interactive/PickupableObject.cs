@@ -33,26 +33,35 @@ namespace Q17pD.Frostwatch.Interactive
             ObjToMove.transform.position = _moveFinalTransform.position;
             ObjToMove.transform.DOMove(_originalPos, 0.25f);
         }
+        private bool CanInteract()
+        {
+            if (!_player.IsHoldingItem) return true;
+            if (_player.CurrentHeldItemIndex == _index) return true;
+            return false;
+        }
         public override void OnMouseEnter()
         {
-            base.OnMouseEnter();
-            if (IsMultiple) 
+            if (IsMultiple)
             {
                 CheckMultipleCollider();
-                if(_visualObjs.All(x=>x.activeSelf) && _player.IsHoldingItem) _cursorHandler.SetCursor("Forbidden");
-                return;
+                if (_visualObjs.All(x => x.activeSelf))
+                {
+                    _outline.enabled = true;
+                    _cursorHandler.SetCursor("Forbidden");
+                    return;
+                }
             }
-            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
-            {
-                _isMoving = true;
-                ObjToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
-            }
-
+            if (!CanInteract()) { _cursorHandler.SetCursor("Forbidden"); return; }
+            if (!_player.IsMoving) base.OnMouseEnter();
+            _isMoving = true;
+            ObjToMove.transform.DOMove(_moveFinalTransform.position, 0.1f).OnComplete(() => _isMoving = false);
         }
         public override void OnMouseExit()
         {
-            base.OnMouseExit();
-            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
+            _player.PlayerCanvasHandler.ClearInfo();
+            _outline.enabled = false;
+            _cursorHandler.SetCursor("Default");
+            if (CanInteract())
             {
                 _isMoving = true;
                 ObjToMove.transform.DOMove(_originalPos, 0.1f).OnComplete(() => _isMoving = false);
@@ -60,33 +69,24 @@ namespace Q17pD.Frostwatch.Interactive
         }
         public override void OnMouseDown()
         {
-            if(IsMultiple && _player.IsHoldingItem && _visualObjs.All(x=>x.activeSelf)) return;
+            if (!CanInteract()) return; if (IsMultiple && _visualObjs.All(x => x.activeSelf)) return;
             _player.PlayerCanvasHandler.ClearInfo();
             _outline.enabled = false;
             _cursorHandler.SetCursor("Default");
-            if (_ignorePlayerHoldingItem || !_player.IsHoldingItem)
-            {
-                _isMoving = true;
-                ObjToMove.transform.DOMove
-                (
-                    _player.PickupableObjectsFinalTransform.position, 0.2f
-                ).OnComplete
-                    (
-                        () =>
-                        {
-                            _isMoving = false;
-                            _audioHandler.PlaySound(SoundType.SFX, _pickupSound);
-                            ObjToMove.transform.position = _originalPos;
-                            _player.PlayerItemHandler.AddItem(_index, this);
-                            gameObject.SetActive(false);
-                        }
-                    );
-            }
+            _isMoving = true;
+            ObjToMove.transform.DOMove(_player.PickupableObjectsFinalTransform.position, 0.2f).OnComplete(() =>
+                {
+                    _isMoving = false;
+                    _audioHandler.PlaySound(SoundType.SFX, _pickupSound);
+                    ObjToMove.transform.position = _originalPos;
+                    _player.PlayerItemHandler.AddItem(_index, this);
+                    gameObject.SetActive(false);
+                });
         }
         public int HasObjs()
         {
             int a = 0;
-            foreach (GameObject obj in _visualObjs) if(obj.activeSelf) a++;
+            foreach (GameObject obj in _visualObjs) if (obj.activeSelf) a++;
             return a;
         }
         public void AddVisualObj()

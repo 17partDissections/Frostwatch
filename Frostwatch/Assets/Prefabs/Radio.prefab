@@ -71,6 +71,7 @@ MonoBehaviour:
   _localeNameKey: RadioName
   _localeDescriptionKey: RadioDescription
   _enterSound: {fileID: 8300000, guid: 37a6ea7aab9903bbaae2cfd7c8f1ffa6, type: 3}
+  _ignorePlayerHoldingItem: 1
   _sounds:
   - {fileID: 8300000, guid: 9ca2cc35c1dfaee7da64749ba5821301, type: 3}
   - {fileID: 8300000, guid: cb3bb5ea9a37a31f69fec45162527997, type: 3}
