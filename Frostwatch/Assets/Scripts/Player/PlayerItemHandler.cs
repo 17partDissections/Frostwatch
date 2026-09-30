@@ -23,6 +23,7 @@ namespace Q17pD.Frostwatch.Player
             _audioHandler = audioHandler;
             for (int i = 0; i < _items.Count; i++) _pickupableObjs.Add(null);
         }
+
         public void AddItem(int index, PickupableObject invoker)
         {
             _currentItemIndex = index;
@@ -36,6 +37,7 @@ namespace Q17pD.Frostwatch.Player
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
             _player.IsHoldingItem = true;
         }
+
         public void ContinueAddingItem()
         {
             if (_currentItemIndex == -1) return;
@@ -51,6 +53,7 @@ namespace Q17pD.Frostwatch.Player
             if (_currentItemIndex == -1) return;
             if (_pickupableObjs[_currentItemIndex] == null) _pickupableObjs[_currentItemIndex] = _branches;
             _pickupableObjs[_currentItemIndex].gameObject.SetActive(true);
+
             if (_items[_currentItemIndex].TryGetComponent<Branches>(out Branches MII))
             {
                 int a = 0;
@@ -58,12 +61,15 @@ namespace Q17pD.Frostwatch.Player
                 int MIIObjs = MII.HasObjs();
                 if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5)) a = (pickupableVisualObjs + MIIObjs) - 5;
                 for (int i = 0; i < MIIObjs - a; i++) { _pickupableObjs[_currentItemIndex].AddVisualObj(); MII.RemoveVisualObj(); }
+
                 if (pickupableVisualObjs > 0 && (pickupableVisualObjs + MIIObjs > 5))
                 {
-                    _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex);
+                    if (_items[_currentItemIndex].TryGetComponent<InventoryItem>(out InventoryItem inventoryItem))
+                        _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex, inventoryItem.Actions, inventoryItem.ActionsVectors);
                     return;
                 }
             }
+
             _items[_currentItemIndex].SetActive(false);
             _pickupableObjs[_currentItemIndex] = null;
             _currentItemIndex = -1;
@@ -71,6 +77,7 @@ namespace Q17pD.Frostwatch.Player
             _player.PlayerCanvasHandler.ClearActions();
             _player.IsHoldingItem = false;
         }
+
         public int GetItemAmount() { return _items.Count; }
     }
 }

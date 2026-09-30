@@ -93,6 +93,6 @@ namespace Q17pD.Frostwatch.Player
             _currentActionsVectors.Clear();
             _buttonActions = new List<InventoryAction> { null, null };
         }
-        public void ActionButtonDown(int index) { if (_buttonActions[index] != null) { _buttonActions[index].Act(); _buttonActions[index] = null; } }
+        public void ActionButtonDown(int index) { if (_buttonActions[index] != null) _buttonActions[index].Act(); }
     }
 }

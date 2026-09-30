@@ -9,6 +9,7 @@ namespace Q17pD.Frostwatch.Inventory
         [SerializeField] private List<GameObject> _visualObjs;
         [SerializeField] private AudioClip _dropIntoForestSound, _dropIntoFireSound;
         [SerializeField] private Player.Player _player;
+
         public int HasObjs()
         {
             int a = 0;
@@ -24,7 +25,6 @@ namespace Q17pD.Frostwatch.Inventory
                 _player.EventBus.OutOfBranches?.Invoke(-1);
                 _player.PlayerItemHandler.DropItem();
             }
-            else _player.PlayerCanvasHandler.UpdateActions(_player.CurrentCameraIndex);
         }
         protected override void Awake()
         {
@@ -38,7 +38,6 @@ namespace Q17pD.Frostwatch.Inventory
             Actions.AddRange(new List<InventoryAction> { dropIntoForest, dropIntoFire });
         }
     }
-
     public class DropIntoForest : InventoryAction
     {
         private AudioClip _actSound;
