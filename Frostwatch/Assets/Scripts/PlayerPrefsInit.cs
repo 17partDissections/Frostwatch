@@ -18,6 +18,7 @@ namespace Q17pD.Frostwatch
                 PlayerPrefs.SetFloat("MusicSliderValue", 1);
                 PlayerPrefs.SetFloat("SFXSliderValue", 1);
                 PlayerPrefs.SetInt("ForcedRatio", 1); Screen.SetResolution(800, 600, FullScreenMode.FullScreenWindow);
+                PlayerPrefs.SetString("EndingsUnlocked", "000");
                 PlayerPrefs.SetInt("IsEndlessModeAvailable", 0);
                 PlayerPrefs.SetInt("Inited", 1);
             }
