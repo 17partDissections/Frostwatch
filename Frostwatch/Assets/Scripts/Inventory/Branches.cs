@@ -9,6 +9,7 @@ namespace Q17pD.Frostwatch.Inventory
         [SerializeField] private List<GameObject> _visualObjs;
         [SerializeField] private AudioClip _dropIntoForestSound, _dropIntoFireSound;
         [SerializeField] private Player.Player _player;
+        [SerializeField] private EndGame _endGame;
 
         public int HasObjs()
         {
@@ -34,7 +35,7 @@ namespace Q17pD.Frostwatch.Inventory
             dropIntoForest.CustomInit(this, _player.EventBus);
             DropIntoFire dropIntoFire = new DropIntoFire();
             dropIntoFire.SoundInit(_dropIntoFireSound);
-            dropIntoFire.CustomInit(this, _player.EventBus);
+            dropIntoFire.CustomInit(this, _player.EventBus, _endGame);
             Actions.AddRange(new List<InventoryAction> { dropIntoForest, dropIntoFire });
         }
     }
@@ -66,6 +67,7 @@ namespace Q17pD.Frostwatch.Inventory
         private AudioHandler _audioHandler;
         private Branches _branches;
         private EventBus _eventBus;
+        private EndGame _endGame;
 
         public override void Init(Player.Player player, AudioHandler handler)
         {
@@ -73,10 +75,11 @@ namespace Q17pD.Frostwatch.Inventory
             LocalizationKey = "DropFire";
         }
         public void SoundInit(AudioClip actSound) { _actSound = actSound; }
-        public void CustomInit(Branches branches, EventBus eventBus) { _branches = branches; _eventBus = eventBus; }
+        public void CustomInit(Branches branches, EventBus eventBus, EndGame endGame) { _branches = branches; _eventBus = eventBus; _endGame = endGame; }
         public override void Act()
         {
-            _audioHandler.PlaySound(SoundType.SFX, _actSound);
+            _endGame._statistics.FirstOrDefault(x => x.Name == "StatBranches").OptionalValue += 1;
+            _audioHandler.PlaySound(SoundType.SFX, _actSound, 0.5f);
             _eventBus.BranchThrownIntoFire?.Invoke();
             _branches.RemoveVisualObj();
         }

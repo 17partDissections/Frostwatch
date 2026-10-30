@@ -35,7 +35,7 @@
 	WalkieTalkieName=Walkie-Talkie
 	WalkieTalkieDescription=A battered, military-issue walkie-talkie.
 	MosinRifleName=Mosin-Nagant M1891/30
-	MosinRifleDescription=A reliable veteran of countless battles. It smells of gun oil, powder and history.
+	MosinRifleDescription=It smells of gun oil and powder.
 	BranchName=Branch
 	BranchDescription=Can be used to keep campfire burn.
 #Actions
@@ -45,11 +45,22 @@
 	Shoot=Shoot
 	Suicide=Suicide
 #Voicelines
-#Endings(im too lazy to rewrite localization's scipt logic, so i just split the prhase "you unlocked n of x endings.")
-	EndMessage1=You unlocked
-	EndMessage1_1=You unlocked only
-	EndMessage2=of
-	EndMessage3=endings.
+#Ending
+	Statistics=Statistics
+	ContinueButton=Continue
 	End1="Suicide ending"
 	End2="Fratricide ending"
 	End3="Sacrifice ending"
+	End4=YOU ARE DEAD
+	EndMessage1=You unlocked only 1 of 3 endings.
+	EndMessage2=You unlocked 2 of 3 endings.
+	EndMessage3=You unlocked all 3 of 3 endings.
+	EndMessage4=Try better. Or close this game.
+	StatDays=Days survived
+	StatShots=Shots
+	StatMutants=Mutants killed
+	StatMeat=Meat eaten
+	StatBranches=Branches burnt
+	EndlessModeUnlocked=You have unlocked Endless Mode.
+#Credits
+	SkipButton=Skip

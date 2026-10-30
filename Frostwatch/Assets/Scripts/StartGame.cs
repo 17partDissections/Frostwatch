@@ -14,7 +14,7 @@ namespace Q17pD.Frostwatch
         private CursorHandler _cursorHandler;
 
         [Inject] private void Construct(AudioHandler ah, CursorHandler ch) { _audioHandler = ah; _cursorHandler = ch; }
-        private void Start() {if(_mode == Mode.Campaign) _audioHandler.PlaySound(SoundType.Music, _menuMusic, true, true, 7); }
+        private void Start() {if(_mode == Mode.Campaign) _audioHandler.PlaySound(SoundType.Music, _menuMusic, 1f, true, true, 7); }
         public void LoadScene() { StartCoroutine(LoadSceneCoroutine()); }
         private IEnumerator LoadSceneCoroutine()
         {
@@ -22,10 +22,10 @@ namespace Q17pD.Frostwatch
             if (_darkeningPanel != null) { _darkeningPanel.gameObject.SetActive(true); _darkeningPanel.UnHighlightImage(0); _darkeningPanel.HighlightImage(1, 3); }
             _audioHandler.StopSound(_menuMusicSrc, true, 3);
             yield return new WaitForSeconds(1.5f);
-            if (_monster != null && _mode == Mode.Campaign) _audioHandler.PlaySound(SoundType.SFX, _monster, false, true, 0.1f);
+            if (_monster != null && _mode == Mode.Campaign) _audioHandler.PlaySound(SoundType.SFX, _monster, 0.15f, false, true, 0.1f);
             yield return new WaitForSeconds(1.5f);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(_mode == Mode.Campaign ? 1 : 2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(_mode == Mode.Campaign ? "Campaign" : _mode == Mode.EndlessMode ? "EndlessMode" : "Credits");
         }
     }
-    public enum Mode { Campaign, EndlessMode }
+    public enum Mode { Campaign, EndlessMode, Credits }
 }

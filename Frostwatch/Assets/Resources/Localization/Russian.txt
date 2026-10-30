@@ -3,7 +3,7 @@
 	No=Нет
 #Menu
 	CampaignButton=Кампания
-	EndlessModeButton=Бесконечный режим
+	EndlessModeButton=Бесконечный Режим
 	OptionsButton=Настройки
 	CreditsButton=Титры
 	QuitButton=Выход
@@ -35,7 +35,7 @@
 	WalkieTalkieName=Рация
 	WalkieTalkieDescription=Потрёпанная рация армейского образца.
 	MosinRifleName=Винтовка Мосина обр.1891/30 г.
-	MosinRifleDescription=Надёжный ветеран бесчисленных сражений. От неё пахнет оружейным маслом, порохом и историей.
+	MosinRifleDescription=Пахнет оружейным маслом и порохом.
 	BranchName=Ветка
 	BranchDescription=Можно использовать для поддержания огня.
 #Actions
@@ -45,11 +45,22 @@
 	Shoot=Выстрелить
 	Suicide=Суицид
 #Voicelines
-#Endings(im too lazy to rewrite localization's scipt logic, so i just split the prhase "you unlocked n of x endings.")
-	EndMessage1=Вы открыли
-	EndMessage1_1=Вы открыли только
-	EndMessage2=из
-	EndMessage3=концовок.
+#Ending
+	Statistics=Статистика
+	ContinueButton=Продолжить
 	End1="Суицидальная концовка"
 	End2="Братоубийственная концовка"
 	End3="Жертвенная концовка"
+	End4=ВЫ МЕРТВЫ
+	EndMessage1=Вы открыли только 1 из 3 концовок.
+	EndMessage2=Вы открыли 2 из 3 концовок.
+	EndMessage3=Вы открыли все 3 из 3 концовок.
+	EndMessage4=Старайся лучше. Или просто закрой игру.
+	StatDays=Дней прожито
+	StatShots=Выстрелов
+	StatMutants=Мутантов убито
+	StatMeat=Мясо съедено
+	StatBranches=Веток сожжено
+	EndlessModeUnlocked=Вы открыли Бесконечный Режим.
+#Credits
+	SkipButton=Пропустить

@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Q17pD.Frostwatch.Interactive
 {
-    public class Campfire : InteractiveObject
+    public class Campfire : MonoBehaviour
     {
         [SerializeField] Transform _fireObj;
         [Range(10,180)][SerializeField] private int _defaultSleep;
@@ -17,12 +17,11 @@ namespace Q17pD.Frostwatch.Interactive
         private int _delay = 0;
 
         [Inject] private void Construct(EventBus eventBus) { _eventBus = eventBus; }
-        protected override void Start()
+        protected void Start()
         {
-            base.Start();
+            //base.Start();
             StartCoroutine(WorkCoroutine());
         }
-
         private IEnumerator WorkCoroutine()
         {
             while(_currentState != 0)
@@ -46,11 +45,7 @@ namespace Q17pD.Frostwatch.Interactive
             _eventBus.CampfireStateChanged?.Invoke(true, _states[_currentState].FrostAmount);
             StartCoroutine(WorkCoroutine());
         }
-
-        public override void OnMouseDown()
-        {
-            throw new NotImplementedException();
-        }
+        //public override void OnMouseDown() { }
     }
     [Serializable] public class CampfireStates { public float ExtinguishDivider; public float VisualFireScale; public float FrostAmount; public bool InvokeMonster; }
 }

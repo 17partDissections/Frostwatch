@@ -12,7 +12,7 @@ namespace Q17pD.Frostwatch
 {
     public class CutsceneNTutorial : MonoBehaviour
     {
-        [SerializeField] private AudioClip _fireIgnite;
+        [SerializeField] private AudioClip _fireIgnite, _fireLoop;
         [SerializeField] private PlayerRotateButton _leftButton, _rightButton;
         [SerializeField] private SkyCore _skyCore;
         [SerializeField] private Outline _campfireOutline;
@@ -44,6 +44,7 @@ namespace Q17pD.Frostwatch
             yield return new WaitForSeconds(2);
             _audioHandler.PlaySound(SoundType.SFX, _fireIgnite);
             yield return new WaitForSeconds(_fireIgnite.length - (_fireIgnite.length/4));
+            _audioHandler.PlaySound(SoundType.SFX, _fireLoop, 0.5f, true);
             _darkeningPanel.UnHighlightImage(_fireIgnite.length / 4);
             yield return new WaitForSeconds(_fireIgnite.length / 4);
             _darkeningPanel.gameObject.SetActive(false);

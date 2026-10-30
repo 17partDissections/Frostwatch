@@ -1,0 +1,58 @@
+A game by Q17pD
+Inspired by John Carpenter's "The Thing" (1982)
+
+Programming
+Q17pD
+
+Design
+Q17pD
+
+3D Art & Modeling
+Q17pD
+Leather Ghost - CodeThisLab
+Nightmare Creature #1 - Grigoriy Ischenko
+Decayed - bond1
+Additional models from the Sketchfab community.
+
+If your work appears here uncredited, please contact me
+and I'll add your name - andrew.q17pd@gmail.com
+
+Audio
+All music and SFX are copyright free!
+"childish whooshes.wav" - <i>Robinhood76</i>
+"small stick break 2.wav" - <i>Robinhood76</i>
+"stereo snowwalker.wav" - <i>jcs224</i>
+"radio noise.flac" - <i>saphe</i>
+"Radio_Jp_creak_5.wav" - <i>AlienXXX</i>
+"walkie_talkie_over_beep.m4a" - <i>MiscPractice</i>
+"Walkie Talkie on/off.wav" - <i>cs2975871</i>
+"jd stick.wav" - <i>zinzan_101</i>
+"palo de escoba.m4a" - <i>jupiter089</i>
+"Grab 2.ogg" - <i>ihitokage</i>
+"Rifle dropped on floor 3x.wav" - <i>serøtōnin</i>
+"An automatic rifle being shot once.wav" - <i>serøutōnin</i>
+"Winter Wind B.wav" - <i>Trashcan_Studios</i>
+"Lighting a match.wav" - <i>InfamousJase</i>
+"Campfire deer camp.wav" - <i>Ambient-X</i>
+"Stepping on branch.wav" - <i>CrazyChuy</i>
+"Clothes Rustling Movement 13_22.wav" - <i>Joao_Janz</i>
+"Clothes Rustling Movement 13_23.wav" - <i>Joao_Janz</i>
+"Clothes Rustling Movement 13_24.wav" - <i>Joao_Janz</i>
+
+Plugins & Shaders
+"Extenject Dependency Injection" - <i>Mathijs Bakker</i>
+"DOTween (HOTween v2)" - <i>Demigiant</i></i>
+"Auto Letterbox" - <i>Tom Elliott</i>
+"Sky Engine" - <i>Ultrabolt.dev</i></i>
+"TOZ Image Effects" - <i>Aubergine</i>
+"Frost Effect" - <i>Steven Craeynest</i>
+
+Localization
+English - <i>Q17pD</i>
+Russian - <i>Q17pD</i>
+
+Dub
+Friend1 - <i>Q17pD</i>
+Friend2 - <i>Q17pD</i>
+
+THANK YOU FOR PLAYING! <3

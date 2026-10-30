@@ -5,11 +5,11 @@ namespace Q17pD.Frostwatch
 {
     public class EndGame : MonoBehaviour
     {
-        [SerializeField] private List<Statistic> _statistics;
+        public List<Statistic> _statistics;
         public void End(int end)
         {
             PlayerPrefs.SetInt("Ending", end);
-            if (PlayerPrefs.GetString("EndingsUnlocked")[end - 1] == '0')
+            if (end != 4 && PlayerPrefs.GetString("EndingsUnlocked")[end - 1] == '0')
             {
                 char[] chars = PlayerPrefs.GetString("EndingsUnlocked").ToCharArray();
                 chars[end - 1] = '1';
@@ -17,7 +17,7 @@ namespace Q17pD.Frostwatch
                 PlayerPrefs.SetString("EndingsUnlocked", newString);
                 Debug.Log(newString);
             }
-            foreach (var statistic in _statistics) PlayerPrefs.SetInt(statistic.Name, statistic.Value);
+            foreach (var statistic in _statistics) PlayerPrefs.SetInt(statistic.Name, statistic.OptionalValue);
             UnityEngine.SceneManagement.SceneManager.LoadScene("Ending");
         }
     }
