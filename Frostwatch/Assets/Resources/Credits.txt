@@ -38,6 +38,13 @@ All music and SFX are copyright free!
 "Clothes Rustling Movement 13_22.wav" - <i>Joao_Janz</i>
 "Clothes Rustling Movement 13_23.wav" - <i>Joao_Janz</i>
 "Clothes Rustling Movement 13_24.wav" - <i>Joao_Janz</i>
+"stomach-noises-1.wav" - <i>yiffcrime</i>
+"stomach-noises-2.wav" - <i>yiffcrime</i>
+"cough1.wav" - <i>qubodup</i>
+"cough2.wav" - <i>qubodup</i>
+"cough3.wav" - <i>qubodup</i>
+"cough4.wav" - <i>qubodup</i>
+"cough5.wav" - <i>qubodup</i>
 
 Plugins & Shaders
 "Extenject Dependency Injection" - <i>Mathijs Bakker</i>

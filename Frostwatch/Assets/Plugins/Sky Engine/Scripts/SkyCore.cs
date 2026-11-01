@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System;
 
 namespace Ultrabolt.SkyEngine
 {
@@ -7,10 +8,11 @@ namespace Ultrabolt.SkyEngine
 	public class SkyCore : MonoBehaviour
 	{
 		public enum Weather { Clear, LowCloud, HighCloud, Rain }
+        public enum FogColorMode { SkyTop, Custom }
 
-		#region Variables
+        #region Variables
 
-		public bool Paused;
+        public bool Paused;
 
 		public TextMeshProUGUI _dayCounter;
 
@@ -32,13 +34,17 @@ namespace Ultrabolt.SkyEngine
 		public Light sunLight, moonLight;
 		public Gradient skyTop, skyBottom;
 
-		// Fog
-		public bool enableFog;
-		public float dayFogDensity = 0.01f;
-		public float nightFogDensity = 0.1f;
+        // Fog
+        public bool enableFog, fogDensityInitialized, fogColorInitialized, fogDayTransitionActive;
+        public float dayFogDensity = 0.01f, nightFogDensity = 0.1f;
+        public float fogDensityTransitionTime = 5f, fogColorTransitionSpeed = 2f;
+        private float _fogDensityStart, _fogDensityTarget, _fogDensityTransitionElapsed, _fogDayTransitionElapsed;
+        public FogColorMode fogColorMode = FogColorMode.SkyTop;
+        public Gradient fogColorGradient;
+        private Color _fogColorCurrent, _fogColorDayStart, _fogColorDayEnd;
 
-		// Time
-		public float timeSpeed = 1f;
+        // Time
+        public float timeSpeed = 1f;
 		public float dayLength = 120f;
 
 		// Info
@@ -99,37 +105,67 @@ namespace Ultrabolt.SkyEngine
 		private void Update() {  if (!Paused) UpdateFrame(); }
 		private void UpdateFrame()
 		{
-            if (_dayCounter != null)
-                _dayCounter.text = dayCount.ToString();
+            if (_dayCounter != null) _dayCounter.text = dayCount.ToString();
             //_dayCounter.text = $"Day: {dayCount}\n{dayState}\n{GetWorldTime()}\nWeather: {weather}";
 
             // Days calculator.
+            float previousTimeOfDay = timeOfDay;
             timeOfDay += (Time.deltaTime / dayLength) * timeSpeed;
-            if (timeOfDay >= 1f)
-            {
-                timeOfDay = 0;
-                dayCount++;
-            }
-
-            // Fog
-            RenderSettings.fog = enableFog;
-            if (enableFog)
-            {
-                //RenderSettings.fogColor = RenderSettings.skybox.GetColor("_SkyGradientTop");
-                RenderSettings.fogDensity = Mathf.MoveTowards(RenderSettings.fogDensity, (dayState == "Night") ?
-                    nightFogDensity : dayFogDensity, Time.deltaTime * lightFadeSpeed * timeSpeed);
-            }
+            bool newDayStarted = timeOfDay >= 1f;
+            if (newDayStarted) { timeOfDay -= 1f; dayCount++; }
 
             // Day Time
             GameTime state = GetTimeState(timeOfDay);
             dayState = state.ToString();
 
-            UpdateWeather();
+            // Fog
+            UpdateFog(state, newDayStarted, previousTimeOfDay);
+
+			UpdateWeather();
             UpdateLighting();
             ApplyAmbient();
         }
 
-		private void UpdateWeather()
+
+        private void UpdateFog(GameTime state, bool newDayStarted, float previousTimeOfDay)
+        {
+            RenderSettings.fog = enableFog;
+            if (!enableFog) return;
+            Color targetFogColor = GetFogGradientColor(timeOfDay);
+            if (!fogColorInitialized) { _fogColorCurrent = targetFogColor; fogColorInitialized = true; }
+            if (newDayStarted)
+            {
+                _fogColorDayStart = GetFogGradientColor(previousTimeOfDay);
+                _fogColorDayEnd = GetFogGradientColor(0f);
+                _fogDayTransitionElapsed = 0f;
+                fogDayTransitionActive = true;
+            }
+            if (fogDayTransitionActive)
+            {
+                _fogDayTransitionElapsed += Time.deltaTime * fogColorTransitionSpeed;
+                float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(_fogDayTransitionElapsed) );
+                _fogColorCurrent = Color.Lerp(_fogColorDayStart, _fogColorDayEnd, t);
+                if (t >= 1f) fogDayTransitionActive = false;
+            }
+            else _fogColorCurrent = Color.Lerp(_fogColorCurrent, targetFogColor, Time.deltaTime * fogColorTransitionSpeed);
+            RenderSettings.fogColor = _fogColorCurrent;
+            float targetDensity = state == GameTime.Night ? nightFogDensity : dayFogDensity;
+            if (!fogDensityInitialized || !Mathf.Approximately(targetDensity, _fogDensityTarget))
+            {
+                fogDensityInitialized = true;
+                _fogDensityStart = RenderSettings.fogDensity;
+                _fogDensityTarget = targetDensity;
+                _fogDensityTransitionElapsed = 0f;
+            }
+            if (fogDensityTransitionTime <= 0f) { RenderSettings.fogDensity = _fogDensityTarget; return; }
+            _fogDensityTransitionElapsed += Time.deltaTime;
+            float densityT = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(_fogDensityTransitionElapsed / fogDensityTransitionTime));
+            RenderSettings.fogDensity = Mathf.Lerp(_fogDensityStart, _fogDensityTarget, densityT);
+        }
+
+        private Color GetFogGradientColor(float time) { return fogColorMode == FogColorMode.SkyTop ? skyTop.Evaluate(time) : fogColorGradient.Evaluate(time); }
+
+        private void UpdateWeather()
 		{
 			Color lightGray20 = new Color(1f, 1f, 1f, 0.2f);
 			Color lightGray40 = new Color(1f, 1f, 1f, 0.4f);

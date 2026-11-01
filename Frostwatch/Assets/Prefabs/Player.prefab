@@ -1708,6 +1708,7 @@ MonoBehaviour:
   - Vectors: 01000000
   - Vectors: 00010101
   - Vectors: 01000000
+  Player: {fileID: 1422308629409973463}
   _visualObjs:
   - {fileID: 7266624161097319989}
   - {fileID: 4260319308873841609}
@@ -1716,7 +1717,6 @@ MonoBehaviour:
   - {fileID: 9111492798972899506}
   _dropIntoForestSound: {fileID: 0}
   _dropIntoFireSound: {fileID: 8300000, guid: 903c67994e5f21307a977578c2efcaac, type: 3}
-  _player: {fileID: 1422308629409973463}
   _endGame: {fileID: 0}
 --- !u!1 &2738181188320641208
 GameObject:
@@ -6716,7 +6716,8 @@ MonoBehaviour:
   PlayerAnimation: {fileID: 0}
   PlayerItemHandler: {fileID: 0}
   PlayerCanvasHandler: {fileID: 0}
-  _frostEffect: {fileID: 5428131633524423549}
+  _endGame: {fileID: 0}
+  _deathSound: {fileID: 0}
 --- !u!114 &840395008565400200
 MonoBehaviour:
   m_ObjectHideFlags: 0

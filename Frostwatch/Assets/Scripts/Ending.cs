@@ -41,7 +41,7 @@ namespace Q17pD.Frostwatch
             yield return new WaitForSeconds(3f);
             _end.localizationKey = $"End{PlayerPrefs.GetInt("Ending")}";
             _end.UpdateLocale();
-            _endMessage.localizationKey = $"EndMessage{PlayerPrefs.GetString("EndingsUnlocked").Count(x => x == '1')}";
+            _endMessage.localizationKey = ending == 4 ? "EndMessage4" : $"EndMessage{PlayerPrefs.GetString("EndingsUnlocked").Count(x => x == '1')}";
             _endMessage.UpdateLocale();
 
             _audioHandler.PlaySound(SoundType.SFX, _endingSound, 0.5f);

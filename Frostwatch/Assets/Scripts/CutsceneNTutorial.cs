@@ -15,7 +15,7 @@ namespace Q17pD.Frostwatch
         [SerializeField] private AudioClip _fireIgnite, _fireLoop;
         [SerializeField] private PlayerRotateButton _leftButton, _rightButton;
         [SerializeField] private SkyCore _skyCore;
-        [SerializeField] private Outline _campfireOutline;
+        [SerializeField] private Campfire _campfire;
         private bool _isCampaign;
         private UIHighlight _darkeningPanel;
         private AudioHandler _audioHandler;
@@ -36,7 +36,6 @@ namespace Q17pD.Frostwatch
 
         private IEnumerator Start()
         {
-            _campfireOutline.enabled = false;
             BranchHandler branchHandler = GetComponent<BranchHandler>();
             branchHandler.enabled = !_isCampaign; _leftButton.AutoRotate = false; _rightButton.AutoRotate = false;
             yield return new WaitForSeconds(2);
@@ -55,7 +54,7 @@ namespace Q17pD.Frostwatch
             foreach (var obj in interactive) obj.enabled = true;
             _cursorHandler.LockCursorToggle(false);
 
-            _skyCore.Paused = false;
+            _skyCore.Paused = false; _campfire.Paused = false;
             if (!_isCampaign) GetComponent<MonstersHandler>().StartMonstersCoroutine();
         }
     }

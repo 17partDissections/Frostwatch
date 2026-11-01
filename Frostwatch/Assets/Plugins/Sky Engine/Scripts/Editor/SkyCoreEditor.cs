@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -63,8 +64,17 @@ namespace Ultrabolt.SkyEngine
                 EditorMethods.DrawBoxGroup(contentGUI, () =>
                 {
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("enableFog"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("fogColorMode"));
+
+                    if ((SkyCore.FogColorMode)serializedObject.FindProperty("fogColorMode").enumValueIndex
+                        == SkyCore.FogColorMode.Custom)
+                    {
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("fogColorGradient"));
+                    }
+
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("dayFogDensity"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("nightFogDensity"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("fogDensityTransitionTime"));
                 });
 
                 contentGUI = EditorGUIUtility.IconContent("d_UnityEditor.ProfilerWindow@2x");

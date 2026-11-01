@@ -10,5 +10,6 @@ namespace Q17pD.Frostwatch
         public Action BranchThrownIntoForest;
         public Action BranchThrownIntoFire;
         public Action<int> OutOfBranches;
+        public Action PlayerDeath;
     }
 }

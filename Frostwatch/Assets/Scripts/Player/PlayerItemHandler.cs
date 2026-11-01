@@ -64,11 +64,23 @@ namespace Q17pD.Frostwatch.Player
                     return;
                 }
             }
+            Debug.Log(_currentItemIndex); //1: 7; 2: -1
             _items[_currentItemIndex].SetActive(false);
             _pickupableObjs[_currentItemIndex] = null;
             _currentItemIndex = -1;
             _player.CurrentHeldItemIndex = -1;
             _player.PlayerAnimation.ChangeAnimation(_currentItemIndex);
+            _player.PlayerCanvasHandler.ClearActions();
+            _player.IsHoldingItem = false;
+        }
+        public void ClearHeldItem()
+        {
+            if (_currentItemIndex == -1) return;
+            _items[_currentItemIndex].SetActive(false);
+            _pickupableObjs[_currentItemIndex] = null;
+            _currentItemIndex = -1;
+            _player.CurrentHeldItemIndex = -1;
+            _player.PlayerAnimation.ChangeAnimation(-1);
             _player.PlayerCanvasHandler.ClearActions();
             _player.IsHoldingItem = false;
         }

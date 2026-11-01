@@ -9,6 +9,7 @@ namespace Q17pD.Frostwatch.Interactive
 {
     public class Campfire : MonoBehaviour
     {
+        public bool Paused;
         [SerializeField] Transform _fireObj;
         [Range(10,180)][SerializeField] private int _defaultSleep;
         [SerializeField] private List<CampfireStates> _states;
@@ -20,12 +21,14 @@ namespace Q17pD.Frostwatch.Interactive
         protected void Start()
         {
             //base.Start();
+            Paused = true;
             StartCoroutine(WorkCoroutine());
         }
         private IEnumerator WorkCoroutine()
         {
             while(_currentState != 0)
             {
+                if (Paused) { yield return new WaitForEndOfFrame(); continue; }
                 float s = _states[_currentState].VisualFireScale;
                 _fireObj.DOScale(new Vector3(s, s, s), 1f);
                 yield return new WaitForSeconds(_defaultSleep / _states[_currentState].ExtinguishDivider);

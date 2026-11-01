@@ -6,9 +6,9 @@ namespace Q17pD.Frostwatch.Inventory
 {
     public class Branches : InventoryItem
     {
+        public Player.Player Player;
         [SerializeField] private List<GameObject> _visualObjs;
         [SerializeField] private AudioClip _dropIntoForestSound, _dropIntoFireSound;
-        [SerializeField] private Player.Player _player;
         [SerializeField] private EndGame _endGame;
 
         public int HasObjs()
@@ -20,22 +20,19 @@ namespace Q17pD.Frostwatch.Inventory
         public void AddVisualObj() { _visualObjs.FirstOrDefault(x => !x.activeSelf).SetActive(true); }
         public void RemoveVisualObj()
         {
-            _visualObjs.LastOrDefault(x => x.activeSelf).SetActive(false);
-            if (!_visualObjs.Any(x => x.activeSelf))
-            {
-                _player.EventBus.OutOfBranches?.Invoke(-1);
-                _player.PlayerItemHandler.DropItem();
-            }
+            GameObject obj = _visualObjs.LastOrDefault(x => x.activeSelf);
+            obj.SetActive(false);
+            if (!_visualObjs.Any(x => x.activeSelf)) Player.EventBus.OutOfBranches?.Invoke(-1);
         }
         protected override void Awake()
         {
             base.Awake();
             DropIntoForest dropIntoForest = new DropIntoForest();
             dropIntoForest.SoundInit(_dropIntoForestSound);
-            dropIntoForest.CustomInit(this, _player.EventBus);
+            dropIntoForest.CustomInit(this, Player.EventBus);
             DropIntoFire dropIntoFire = new DropIntoFire();
             dropIntoFire.SoundInit(_dropIntoFireSound);
-            dropIntoFire.CustomInit(this, _player.EventBus, _endGame);
+            dropIntoFire.CustomInit(this, Player.EventBus, _endGame);
             Actions.AddRange(new List<InventoryAction> { dropIntoForest, dropIntoFire });
         }
     }
@@ -58,6 +55,7 @@ namespace Q17pD.Frostwatch.Inventory
             _audioHandler.PlaySound(SoundType.SFX, _actSound);
             _eventBus.BranchThrownIntoForest?.Invoke();
             _branches.RemoveVisualObj();
+            if (_branches.HasObjs() == 0) _branches.Player.PlayerItemHandler.ClearHeldItem();
         }
     }
 
@@ -82,6 +80,7 @@ namespace Q17pD.Frostwatch.Inventory
             _audioHandler.PlaySound(SoundType.SFX, _actSound, 0.5f);
             _eventBus.BranchThrownIntoFire?.Invoke();
             _branches.RemoveVisualObj();
+            if (_branches.HasObjs() == 0) _branches.Player.PlayerItemHandler.ClearHeldItem();
         }
     }
 }

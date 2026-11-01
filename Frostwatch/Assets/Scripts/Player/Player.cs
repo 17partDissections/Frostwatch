@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TOZ.ImageFX;
 using UnityEngine;
 using Zenject;
 
@@ -19,9 +21,11 @@ namespace Q17pD.Frostwatch.Player
         [HideInInspector] public PlayerItemHandler PlayerItemHandler;
         [HideInInspector] public PlayerCanvasHandler PlayerCanvasHandler;
         [HideInInspector] public EventBus EventBus;
-        [SerializeField] private FrostEffect _frostEffect;
-        private int _warm = 3;
-
+        [SerializeField] private EndGame _endGame;
+        [SerializeField] private AudioClip _deathSound;
+        private FrostEffect _frostEffect;
+        private PP_Amnesia _amnezia;
+        private int _warm = 1;
 
         [Inject] private void Construct(EventBus eventBus)
         {
@@ -32,18 +36,25 @@ namespace Q17pD.Frostwatch.Player
             PlayerCanvasHandler = GetComponentInChildren<PlayerCanvasHandler>();
             EventBus = eventBus;
             EventBus.CampfireStateChanged += ChangeWarmState;
+            _frostEffect = GetComponentInChildren<FrostEffect>();
+            _amnezia = GetComponentInChildren<PP_Amnesia>();
         }
 
         private void ChangeWarmState(bool increased, float frostAmount)
         {
-            Debug.Log("changeWarmState");
             _frostEffect.FrostAmount = frostAmount;
             if (increased && _warm < 7) _warm++;
             else if (!increased && _warm > 0) _warm--;
-            else if (!increased && _warm == 0)
-            {
-                Debug.Log("DEWA");
-            }
+            if (_warm == 0) StartCoroutine(DeathCoroutine());
+        }
+        private IEnumerator DeathCoroutine()
+        {
+            EventBus.PlayerDeath?.Invoke();
+            _endGame.GetComponent<CursorHandler>().LockCursorToggle(true);
+            _amnezia.enabled = true; _amnezia.Visibility = 0.05f;
+            //PlayerAnimation.ChangeAnimation(9);
+            yield return new WaitForSeconds(6);
+            _endGame.End(4);
         }
     }
 }
