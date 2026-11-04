@@ -64,7 +64,6 @@ namespace Q17pD.Frostwatch.Player
                     return;
                 }
             }
-            Debug.Log(_currentItemIndex); //1: 7; 2: -1
             _items[_currentItemIndex].SetActive(false);
             _pickupableObjs[_currentItemIndex] = null;
             _currentItemIndex = -1;

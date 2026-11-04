@@ -11,13 +11,13 @@ namespace Q17pD.Frostwatch.Interactive
     {
         public bool Paused;
         [SerializeField] Transform _fireObj;
-        [Range(10,180)][SerializeField] private int _defaultSleep;
+        [Range(10, 180)][SerializeField] private int _defaultSleep;
         [SerializeField] private List<CampfireStates> _states;
         [SerializeField] int _currentState = 3;
         private EventBus _eventBus;
         private int _delay = 0;
 
-        [Inject] private void Construct(EventBus eventBus) { _eventBus = eventBus; }
+        [Inject] private void Construct(EventBus eventBus) { _eventBus = eventBus; _eventBus.BranchThrownIntoFire += OnBranchThrownIntoFire; }
         protected void Start()
         {
             //base.Start();
@@ -26,20 +26,20 @@ namespace Q17pD.Frostwatch.Interactive
         }
         private IEnumerator WorkCoroutine()
         {
-            while(_currentState != 0)
+            while (_currentState != 0)
             {
                 if (Paused) { yield return new WaitForEndOfFrame(); continue; }
                 float s = _states[_currentState].VisualFireScale;
                 _fireObj.DOScale(new Vector3(s, s, s), 1f);
                 yield return new WaitForSeconds(_defaultSleep / _states[_currentState].ExtinguishDivider);
-                if(_delay != 0) _delay--;
+                if (_delay != 0) _delay--;
                 else { _currentState--; _eventBus.CampfireStateChanged?.Invoke(false, _states[_currentState].FrostAmount); }
             }
         }
         public void IncreaseState(int _branchAmount)
         {
             StopAllCoroutines();
-            if((_branchAmount + _currentState) > (_states.Count - 1))
+            if ((_branchAmount + _currentState) > (_states.Count - 1))
             {
                 _currentState = (_states.Count - 1);
                 _delay += (_branchAmount + _currentState) - (_states.Count - 1);
@@ -48,6 +48,7 @@ namespace Q17pD.Frostwatch.Interactive
             _eventBus.CampfireStateChanged?.Invoke(true, _states[_currentState].FrostAmount);
             StartCoroutine(WorkCoroutine());
         }
+        private void OnBranchThrownIntoFire() { IncreaseState(1); }
         //public override void OnMouseDown() { }
     }
     [Serializable] public class CampfireStates { public float ExtinguishDivider; public float VisualFireScale; public float FrostAmount; public bool InvokeMonster; }

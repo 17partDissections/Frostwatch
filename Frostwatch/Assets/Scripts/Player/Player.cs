@@ -25,7 +25,7 @@ namespace Q17pD.Frostwatch.Player
         [SerializeField] private AudioClip _deathSound;
         private FrostEffect _frostEffect;
         private PP_Amnesia _amnezia;
-        private int _warm = 1;
+        private int _warm = 3;
 
         [Inject] private void Construct(EventBus eventBus)
         {
