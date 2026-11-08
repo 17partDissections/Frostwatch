@@ -62,10 +62,9 @@ namespace Q17pD.Frostwatch.Inventory
             _audioHandler?.PlaySound(SoundType.SFX, _shootSound);
             _muzzleFlash.Play(); _muzzleFlash.GetComponentInChildren<ParticleSystem>().Play();
             _player?.PlayerAnimation.ChangeAnimation(_shootAnim);
-            yield return new WaitForSeconds(_shootDelay);
             _eventBus.Shot?.Invoke(_player.CurrentCameraIndex);
+            yield return new WaitForSeconds(_shootDelay);
             DecreaseBullets();
-
             _isShooting = false;
             _currentCoroutine = null;
         }

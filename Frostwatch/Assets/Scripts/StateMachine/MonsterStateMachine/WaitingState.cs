@@ -6,13 +6,19 @@ namespace Q17pD.StateMachine.Local
     public class WaitingState : BaseState<MonsterStateMachine.MonsterStates>
     {
         private MonsterStateMachine _stateMachine;
+        private Coroutine _waitingCoroutine;
         public WaitingState(MonsterStateMachine.MonsterStates state, MonsterStateMachine CurrentStateMachine) : base(state) { _stateMachine = CurrentStateMachine; }
         public override void Enter2State()
         {
-            _stateMachine.StartCoroutine(WaitingCoroutine());
+            _waitingCoroutine = _stateMachine.StartCoroutine(WaitingCoroutine());
         }
         public override void Exit2State()
         {
+            if (_waitingCoroutine != null)
+            {
+                _stateMachine.StopCoroutine(_waitingCoroutine);
+                _waitingCoroutine = null;
+            }
         }
         public override void UpdateState()
         {

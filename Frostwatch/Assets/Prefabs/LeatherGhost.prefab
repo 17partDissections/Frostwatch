@@ -930,11 +930,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Lifetime: 0
+  Vector: 0
+  CurrentMonsterPoints: {fileID: 0}
+  MonstersHandler: {fileID: 0}
   PatrolPoints: []
   CurrentDestinationPoint: {fileID: 0}
   Agent: {fileID: 0}
+  IsAttacking: 0
   AfterAttack: 1
   _hasCrawlAnim: 0
+  Animator: {fileID: 0}
 --- !u!1 &4089824646457034035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,8 +1443,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693554757858862013}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.5, z: -3.75}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 3.5, z: 3.75}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
